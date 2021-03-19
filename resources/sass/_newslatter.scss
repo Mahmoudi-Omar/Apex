@@ -1,0 +1,56 @@
+.newslater {
+    width: 100%;
+    height: 152px;
+    background: #f0f0f0;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    .content-subs {
+        position: relative;
+        input {
+            display: inline-block !important;
+            width: 270px !important;
+            height: 50px;
+        }
+        span {
+            background: #5ea606;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            position: absolute;
+            top: 1px;
+            right: 30px;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            color: #fff;
+            margin-right: 5px;
+        }
+    }
+    .newslater-icon {
+        display: flex;
+        float: right;
+        div {
+            background: #fff;
+            border-radius: 5px;
+            margin: 0 10px;
+            width: 50px;
+            cursor: pointer;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            i {
+                font-size: 18px;
+                transition: all .3s;
+            }
+            &:hover {
+                i {
+                    color: $green;
+                }
+            }
+        }
+    }
+}
