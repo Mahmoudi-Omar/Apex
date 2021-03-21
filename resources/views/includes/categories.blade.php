@@ -7,36 +7,14 @@
             </div>
             <div class="cat-list">
                 <ul>
-                    <div class="li-content">
-                        <li>
-                            <i class="fas fa-tv"></i>
-                            <p>npm run development </p>
-                        </li>
-                    </div>
-                    <div class="li-content">
-                        <li>
-                            <i class="fas fa-tv"></i>
-                            <p>npm run development </p>
-                        </li>
-                    </div>
-                    <div class="li-content">
-                        <li>
-                            <i class="fas fa-tv"></i>
-                            <p>npm run development </p>
-                        </li>
-                    </div>
-                    <div class="li-content">
-                        <li>
-                            <i class="fas fa-tv"></i>
-                            <p>npm run development </p>
-                        </li>
-                    </div>
-                    <div class="li-content">
-                        <li>
-                            <i class="fas fa-tv"></i>
-                            <p>npm run development </p>
-                        </li>
-                    </div>
+                    @foreach ($categories as $category)
+                        <div class="li-content">
+                            <li>
+                                <i class="fas fa-tv"></i>
+                                <p> {{ $category->cat_name }} </p>
+                            </li>
+                        </div>
+                    @endforeach
                 </ul>
             </div>
         </div>

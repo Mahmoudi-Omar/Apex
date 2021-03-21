@@ -1,0 +1,26 @@
+#navbar {
+    position: relative;
+    .cat-title {
+        cursor: pointer;
+    }
+    .cat-list {
+        display: none;
+        position: absolute;
+        z-index: 2;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+    .cat-list.collapse {
+        display: block;
+    }
+    .fa-chevron-down {
+        margin-left: 92px;
+        font-size: 15px;
+        transition: all .3s;
+    }
+    .fa-chevron-down.rotate {
+        margin-left: 92px;
+        font-size: 15px;
+        transform: rotateZ(180deg);
+    }
+}

@@ -8,9 +8,9 @@
     </div>
     <div class="search-bar">
         <select class="selectpicker" title="All Category">
-            <option>Mustard</option>
-            <option>Ketchup</option>
-            <option>Relish</option>
+            @foreach ($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->cat_name }}</option>
+            @endforeach
         </select>                    
         <input type="text" placeholder="Enter Keyword" name="search" class="form-control" />
         <div class="search-icon">

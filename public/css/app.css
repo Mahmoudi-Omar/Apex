@@ -12331,4 +12331,46 @@ p {
   color: #777;
 }
 
+#navbar {
+  position: relative;
+}
+
+#navbar .cat-title {
+  cursor: pointer;
+}
+
+#navbar .cat-list {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+#navbar .cat-list.collapse {
+  display: block;
+}
+
+#navbar .fa-chevron-down {
+  margin-left: 92px;
+  font-size: 15px;
+  transition: all 0.3s;
+}
+
+#navbar .fa-chevron-down.rotate {
+  margin-left: 92px;
+  font-size: 15px;
+  transform: rotateZ(180deg);
+}
+
+.card-body-for-register .form-control:focus {
+  border-color: #5ea606;
+  box-shadow: 0 0 0 0.2rem #5ea606;
+}
+
+.card-body-for-register .btn-primary {
+  background-color: #5ea606;
+  border-color: #5ea606;
+}
+
 

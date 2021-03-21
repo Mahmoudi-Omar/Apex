@@ -4,15 +4,16 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+            <div style="left: 40px;box-shadow: 2px 2px 8px 2px rgb(0 0 0 / 20%);" class="card">
+                {{-- <div class="card-header">{{ __('Register') }}</div> --}}
+                <div class="card-header">Create Account</div>
 
-                <div class="card-body">
+                <div class="card-body card-body-for-register">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Nom de famille</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -22,6 +23,22 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label for="prenom" class="col-md-4 col-form-label text-md-right">Prénom</label>
+
+                            <div class="col-md-6">
+                                <input id="prenom" name="prenom" type="text" class="form-control" value="{{ old('prenom') }}" required autofocus>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label for="phone" class="col-md-4 col-form-label text-md-right">Phone</label>
+
+                            <div class="col-md-6">
+                                <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}" required autofocus>
                             </div>
                         </div>
 

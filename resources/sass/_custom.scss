@@ -1,0 +1,10 @@
+.card-body-for-register {
+    .form-control:focus {
+        border-color: $green;
+        box-shadow: 0 0 0 0.2rem $green;
+    }
+    .btn-primary {
+        background-color: $green;
+        border-color: $green;
+    }
+}
