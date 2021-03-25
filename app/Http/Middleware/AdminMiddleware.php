@@ -17,9 +17,12 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->usertype=='super_admin') {
-            return $next($request);
-        } else {
+        if (Auth::check()) {
+            if (Auth::user()->usertype=='super_admin') {
+                return $next($request);
+            }
+        }
+        else {
             return redirect()->route('index');
         }
     }

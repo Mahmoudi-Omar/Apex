@@ -8,9 +8,9 @@
     </div>
     <div class="search-bar">
         <select class="selectpicker" title="All Category">
-            @foreach ($categories as $category)
+            {{-- @foreach ($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->cat_name }}</option>
-            @endforeach
+            @endforeach --}}
         </select>                    
         <input type="text" placeholder="Enter Keyword" name="search" class="form-control" />
         <div class="search-icon">

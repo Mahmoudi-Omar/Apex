@@ -114,12 +114,21 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <select name="sub_cat_id" class="selectpicker sub-cat-form" data-live-search="true">
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}" data-tokens="{{ $category->cat_name }}">{{ $category->cat_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            {{-- <div class="col-md-6">
+                                <div class="form-group">
+                                    <select name="sub_cat_id" class="selectpicker sub-cat-form" data-live-search="true">
                                         @foreach ($sub_categories as $sub_category)
                                             <option value="{{ $sub_category->id }}" data-tokens="{{ $sub_category->sub_cat_name }}">{{ $sub_category->sub_cat_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <button type="submit" class="btn btn-primary pull-right">Add sub-categories</button>
                         <div class="clearfix"></div>

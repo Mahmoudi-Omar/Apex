@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[App\Http\Controllers\indexController::class,'index']);
+Route::get('/',[App\Http\Controllers\indexController::class,'index'])->name('index');
 
 Route::prefix('admin')->middleware('admin')->name('admin.')->group(function(){
     Route::get('/',function(){
@@ -22,6 +22,9 @@ Route::prefix('admin')->middleware('admin')->name('admin.')->group(function(){
     })->name('index');
     Route::resource('insertion',App\Http\Controllers\Admin\CategoriesController::class);
     Route::resource('subcatinsert',App\Http\Controllers\Admin\SubCatController::class);
+    Route::get('livewire',function(){
+        return view('admin.livewire');
+    })->name('livewire');
 });
 
 
