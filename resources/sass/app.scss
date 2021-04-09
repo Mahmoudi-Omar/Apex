@@ -11,6 +11,8 @@
 
 @import '../../node_modules//slick-carousel/slick/slick-theme.scss';
 
+@import "~noty/src/noty.scss";
+@import "~noty/src/themes/mint.scss";
 
 @import 'index';
 @import 'header';
@@ -19,3 +21,4 @@
 @import 'footer';
 @import 'navbar';
 @import 'custom';
+@import 'shop';

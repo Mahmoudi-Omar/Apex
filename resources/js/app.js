@@ -6,9 +6,14 @@
 
 require('./bootstrap');
 
+require('../../node_modules/slick-carousel/slick/slick');
+
+// require('../../node_modules/blueimp-file-upload/js/jquery.fileupload');
+
+// require('../../node_modules/jquery-ui/')
+
 window.Vue = require('vue').default;
 
-require('../../node_modules/slick-carousel/slick/slick');
 
 /**
  * The following block of code may be used to automatically register your

@@ -16,16 +16,16 @@
             <p>Insertion</p>
           </a>
         </li>
-        <li class="nav-item ">
+        {{-- <li class="nav-item ">
           <a class="nav-link" href="{{ route('admin.livewire') }}">
             <i class="material-icons">content_paste</i>
             <p>LiveWire</p>
           </a>
-        </li>
+        </li> --}}
         <li class="nav-item ">
-          <a class="nav-link" href="./user.html">
+          <a class="nav-link" href="{{ route('admin.edit.index') }}">
             <i class="material-icons">person</i>
-            <p>User Profile</p>
+            <p>Editing</p>
           </a>
         </li>
         <li class="nav-item ">

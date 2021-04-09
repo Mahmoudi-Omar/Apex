@@ -46,7 +46,7 @@ class CategoriesController extends Controller
         Category::create([
             'cat_name'=>$request->cat_name
         ]);
-
+        session()->flash('add_cat','Category added with successufly');
         return redirect()->back();
     }
 
@@ -83,6 +83,7 @@ class CategoriesController extends Controller
     {
         //
     }
+    
 
     /**
      * Remove the specified resource from storage.

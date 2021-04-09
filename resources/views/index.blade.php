@@ -7,7 +7,6 @@
     <title>Document</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
@@ -33,7 +32,6 @@
                         <img src="{{ asset('assets/images/18-600x600.jpg') }}" />
                         <h5>Gommage</h5>
                         <p>15 Devices</p>
-
                     </div>
                 </div>
                 <div class="category">
@@ -112,170 +110,52 @@
                 </div>
             </div>    
         </div>
-
         <div class="new-products">
             <div class="top-tittle">
                 <h4>New Products</h4>
                 <div class="line"></div>
-                <div class="new-product-cat-list">
-                    <span> SOINS DU CORPS <span>
-                </div>
-                <div class="new-product-cat-list">
-                    <span> SOINS DES YEUX <span>
-                </div>
-                <div class="new-product-cat-list">
-                    <span> MAQUILLAGE <span>
-                </div>
-                <div class="new-product-cat-list">
-                    <span> Bio Et Naturel <span>
-                </div>
+                @foreach ($categories_filter_new_product as $item)
+                    <div class="new-product-cat-list filter_new_product" data-catId="{{ $item->id }}">
+                        <span> {{ $item->cat_name }} <span>
+                    </div>
+                @endforeach
             </div>
-            <div class="card-wrapper">
-                <div class="product-card">
-                    <div class="img-card">
-                        <img src="{{ asset('assets/images/10-600x600.jpg') }}" />
-                        <div class="view-hover">
-                            <i class="fas fa-eye"></i>
+            <div class="card-wrapper" id="append_new_product">
+                <div id="loader" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                @foreach ($new_products as $new_product)
+                    <div class="product-card">
+                        <div class="img-card">
+                            <img src="{{ asset('assets/images/'.$new_product->imageProduct[0]->img_src) }}" />
+                            <div class="view-hover">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                        </div>
+                        <div class="product-tittle">
+                            <h4>{{ $new_product->product_name }}</h4>
+                        </div>
+                        <div class="product-avis">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <h4>{{ $new_product->price }} DT</h4>
+                            @if ($new_product->old_price)
+                                <h4 class="old_price">{{ $new_product->old_price }} DT</h4>
+                            @endif
+                        </div>
+                        <div class="add-hover">
+                            <div class="add-to-card">
+                                <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
+                                <span>Add To Cart</span>
+                            </div>
+                            <div class="heart-hover">
+                                <i class="far fa-heart"></i>
+                            </div>
                         </div>
                     </div>
-                    <div class="product-tittle">
-                        <h4>Accessory Bundle Includes 64GB</h4>
-                    </div>
-                    <div class="product-avis">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="product-price">
-                        <h4>75.000 DT</h4>
-                    </div>
-                    <div class="add-hover">
-                        <div class="add-to-card">
-                            <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
-                            <span>Add To Cart</span>
-                        </div>
-                        <div class="heart-hover">
-                            <i class="far fa-heart"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="img-card">
-                        <img src="{{ asset('assets/images/10-600x600.jpg') }}" />
-                        <div class="view-hover">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                    </div>
-                    <div class="product-tittle">
-                        <h4>Accessory Bundle Includes 64GB</h4>
-                    </div>
-                    <div class="product-avis">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="product-price">
-                        <h4>75.000 DT</h4>
-                    </div>
-                    <div class="add-hover">
-                        <div class="add-to-card">
-                            <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
-                            <span>Add To Cart</span>
-                        </div>
-                        <div class="heart-hover">
-                            <i class="far fa-heart"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="img-card">
-                        <img src="{{ asset('assets/images/10-600x600.jpg') }}" />
-                        <div class="view-hover">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                    </div>
-                    <div class="product-tittle">
-                        <h4>Accessory Bundle Includes 64GB</h4>
-                    </div>
-                    <div class="product-avis">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="product-price">
-                        <h4>75.000 DT</h4>
-                    </div>
-                    <div class="add-hover">
-                        <div class="add-to-card">
-                            <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
-                            <span>Add To Cart</span>
-                        </div>
-                        <div class="heart-hover">
-                            <i class="far fa-heart"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="img-card">
-                        <img src="{{ asset('assets/images/10-600x600.jpg') }}" />
-                        <div class="view-hover">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                    </div>
-                    <div class="product-tittle">
-                        <h4>Accessory Bundle Includes 64GB</h4>
-                    </div>
-                    <div class="product-avis">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="product-price">
-                        <h4>75.000 DT</h4>
-                    </div>
-                    <div class="add-hover">
-                        <div class="add-to-card">
-                            <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
-                            <span>Add To Cart</span>
-                        </div>
-                        <div class="heart-hover">
-                            <i class="far fa-heart"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="img-card">
-                        <img src="{{ asset('assets/images/10-600x600.jpg') }}" />
-                        <div class="view-hover">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                    </div>
-                    <div class="product-tittle">
-                        <h4>Accessory Bundle Includes 64GB</h4>
-                    </div>
-                    <div class="product-avis">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="product-price">
-                        <h4>75.000 DT</h4>
-                    </div>
-                    <div class="add-hover">
-                        <div class="add-to-card">
-                            <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
-                            <span>Add To Cart</span>
-                        </div>
-                        <div class="heart-hover">
-                            <i class="far fa-heart"></i>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
 
@@ -502,313 +382,50 @@
             <div class="top-tittle">
                 <h4>Feature Products</h4>
                 <div class="line"></div>
-                <div class="new-product-cat-list">
-                    <span> SOINS DU CORPS <span>
-                </div>
-                <div class="new-product-cat-list">
-                    <span> SOINS DES YEUX <span>
-                </div>
-                <div class="new-product-cat-list">
-                    <span> MAQUILLAGE <span>
-                </div>
-                <div class="new-product-cat-list">
-                    <span> Bio Et Naturel <span>
-                </div>
+                @foreach ($feature_categories_filter as $item)
+                    <div class="new-product-cat-list feature_cat" data-id="{{ $item->id }}">
+                        <span> {{ $item->cat_name }} <span>
+                    </div>
+                @endforeach
             </div>
-            <div class="card-wrapper">
-                <div class="product-card">
-                    <div class="img-card">
-                        <img src="{{ asset('assets/images/10-600x600.jpg') }}" />
-                        <div class="view-hover">
-                            <i class="fas fa-eye"></i>
+            <div class="card-wrapper" id="append_feature_product">
+                <div id="loader_feature" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                @foreach ($feature_products as $feature_product)
+                    <div class="product-card">
+                        <div class="img-card">
+                            <img src="{{ asset('assets/images/'.$feature_product->imageProduct[0]->img_src) }}" />
+                            <div class="view-hover">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                        </div>
+                        <div class="product-tittle">
+                            <h4>{{ $feature_product->product_name }}</h4>
+                        </div>
+                        <div class="product-avis">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <h4>{{ $feature_product->price }} DT</h4>
+                            @if ($feature_product->old_price)
+                                <h4 class="old_price">{{ $feature_product->old_price }} DT</h4>
+                            @endif
+                        </div>
+                        <div class="add-hover">
+                            <div class="add-to-card">
+                                <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
+                                <span>Add To Cart</span>
+                            </div>
+                            <div class="heart-hover">
+                                <i class="far fa-heart"></i>
+                            </div>
                         </div>
                     </div>
-                    <div class="product-tittle">
-                        <h4>Accessory Bundle Includes 64GB</h4>
-                    </div>
-                    <div class="product-avis">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="product-price">
-                        <h4>75.000 DT</h4>
-                    </div>
-                    <div class="add-hover">
-                        <div class="add-to-card">
-                            <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
-                            <span>Add To Cart</span>
-                        </div>
-                        <div class="heart-hover">
-                            <i class="far fa-heart"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="img-card">
-                        <img src="{{ asset('assets/images/10-600x600.jpg') }}" />
-                        <div class="view-hover">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                    </div>
-                    <div class="product-tittle">
-                        <h4>Accessory Bundle Includes 64GB</h4>
-                    </div>
-                    <div class="product-avis">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="product-price">
-                        <h4>75.000 DT</h4>
-                    </div>
-                    <div class="add-hover">
-                        <div class="add-to-card">
-                            <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
-                            <span>Add To Cart</span>
-                        </div>
-                        <div class="heart-hover">
-                            <i class="far fa-heart"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="img-card">
-                        <img src="{{ asset('assets/images/10-600x600.jpg') }}" />
-                        <div class="view-hover">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                    </div>
-                    <div class="product-tittle">
-                        <h4>Accessory Bundle Includes 64GB</h4>
-                    </div>
-                    <div class="product-avis">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="product-price">
-                        <h4>75.000 DT</h4>
-                    </div>
-                    <div class="add-hover">
-                        <div class="add-to-card">
-                            <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
-                            <span>Add To Cart</span>
-                        </div>
-                        <div class="heart-hover">
-                            <i class="far fa-heart"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="img-card">
-                        <img src="{{ asset('assets/images/10-600x600.jpg') }}" />
-                        <div class="view-hover">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                    </div>
-                    <div class="product-tittle">
-                        <h4>Accessory Bundle Includes 64GB</h4>
-                    </div>
-                    <div class="product-avis">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="product-price">
-                        <h4>75.000 DT</h4>
-                    </div>
-                    <div class="add-hover">
-                        <div class="add-to-card">
-                            <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
-                            <span>Add To Cart</span>
-                        </div>
-                        <div class="heart-hover">
-                            <i class="far fa-heart"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="img-card">
-                        <img src="{{ asset('assets/images/10-600x600.jpg') }}" />
-                        <div class="view-hover">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                    </div>
-                    <div class="product-tittle">
-                        <h4>Accessory Bundle Includes 64GB</h4>
-                    </div>
-                    <div class="product-avis">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="product-price">
-                        <h4>75.000 DT</h4>
-                    </div>
-                    <div class="add-hover">
-                        <div class="add-to-card">
-                            <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
-                            <span>Add To Cart</span>
-                        </div>
-                        <div class="heart-hover">
-                            <i class="far fa-heart"></i>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
-            <div class="card-wrapper card-wrapper-2">
-                <div class="product-card">
-                    <div class="img-card">
-                        <img src="{{ asset('assets/images/10-600x600.jpg') }}" />
-                        <div class="view-hover">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                    </div>
-                    <div class="product-tittle">
-                        <h4>Accessory Bundle Includes 64GB</h4>
-                    </div>
-                    <div class="product-avis">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="product-price">
-                        <h4>75.000 DT</h4>
-                    </div>
-                    <div class="add-hover">
-                        <div class="add-to-card">
-                            <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
-                            <span>Add To Cart</span>
-                        </div>
-                        <div class="heart-hover">
-                            <i class="far fa-heart"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="img-card">
-                        <img src="{{ asset('assets/images/10-600x600.jpg') }}" />
-                        <div class="view-hover">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                    </div>
-                    <div class="product-tittle">
-                        <h4>Accessory Bundle Includes 64GB</h4>
-                    </div>
-                    <div class="product-avis">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="product-price">
-                        <h4>75.000 DT</h4>
-                    </div>
-                    <div class="add-hover">
-                        <div class="add-to-card">
-                            <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
-                            <span>Add To Cart</span>
-                        </div>
-                        <div class="heart-hover">
-                            <i class="far fa-heart"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="img-card">
-                        <img src="{{ asset('assets/images/10-600x600.jpg') }}" />
-                        <div class="view-hover">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                    </div>
-                    <div class="product-tittle">
-                        <h4>Accessory Bundle Includes 64GB</h4>
-                    </div>
-                    <div class="product-avis">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="product-price">
-                        <h4>75.000 DT</h4>
-                    </div>
-                    <div class="add-hover">
-                        <div class="add-to-card">
-                            <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
-                            <span>Add To Cart</span>
-                        </div>
-                        <div class="heart-hover">
-                            <i class="far fa-heart"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="img-card">
-                        <img src="{{ asset('assets/images/10-600x600.jpg') }}" />
-                        <div class="view-hover">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                    </div>
-                    <div class="product-tittle">
-                        <h4>Accessory Bundle Includes 64GB</h4>
-                    </div>
-                    <div class="product-avis">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="product-price">
-                        <h4>75.000 DT</h4>
-                    </div>
-                    <div class="add-hover">
-                        <div class="add-to-card">
-                            <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
-                            <span>Add To Cart</span>
-                        </div>
-                        <div class="heart-hover">
-                            <i class="far fa-heart"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="img-card">
-                        <img src="{{ asset('assets/images/10-600x600.jpg') }}" />
-                        <div class="view-hover">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                    </div>
-                    <div class="product-tittle">
-                        <h4>Accessory Bundle Includes 64GB</h4>
-                    </div>
-                    <div class="product-avis">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="product-price">
-                        <h4>75.000 DT</h4>
-                    </div>
-                    <div class="add-hover">
-                        <div class="add-to-card">
-                            <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
-                            <span>Add To Cart</span>
-                        </div>
-                        <div class="heart-hover">
-                            <i class="far fa-heart"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div> <!-- end of feature-product -->
 
         <div class="newslater">
@@ -853,8 +470,6 @@
                                 </div>
                             </div>
                             <p class="slogan-desc">We are a team of designers and developers that create high quality Magento, Prestashop, Opencart.</p>
-                            {{-- <h4>Payment</h4> --}}
-                            {{-- <img src="images/payment.png"> --}}
                         </div>
                     </div>
                     <div class="col-3">
@@ -891,18 +506,6 @@
             </div>
         </footer>
 
-        <div>
-            <a href="{{ route('logout') }}"
-               onclick="event.preventDefault();
-                             document.getElementById('logout-form').submit();">
-                Logout
-            </a>
-
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-            </form>
-        </div>
-
     </div> <!-- end of page wrapper -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
@@ -928,6 +531,62 @@
             slidesToScroll: 1,
             nextArrow : document.getElementById('next-slider-deal'),
             prevArrow : document.getElementById('prev-slider-deal'),
+        })
+
+        $(document).ready(function() {
+            $("#loader").hide();
+            $('.filter_new_product').click(function(){
+               $catID=($(this).attr('data-catId'))
+                $.ajax({
+                    url:"{{ route('show_new_product_index') }}",
+                    type:"POST",
+                    dataType:"json",
+                    data:{
+                        "_token": "{{ csrf_token() }}",
+                        id_cat:$catID
+                    },
+                    beforeSend:function() {
+                        $('#loader').show() 
+                    },
+                    success:function(data) {
+                        $("#loader").hide();
+                        $('#append_new_product').empty()
+                        $('#append_new_product').append(data.output)
+
+                    },
+                    error:function(error) {
+                        console.log(error)
+                    }
+                })
+               
+            })
+            $("#loader_feature").hide()
+            $('.feature_cat').click(function(){
+               $cat_id=($(this).attr('data-id'))
+                $.ajax({
+                    url:"{{ route('show_feature_product_ajax') }}",
+                    type:"POST",
+                    dataType:"json",
+                    data : {
+                        "_token" : "{{ csrf_token() }}",
+                        id_cat:$cat_id
+                    },
+                    beforeSend:function() {
+                        $("#loader_feature").show()
+                    }
+                    ,
+                    success : function(data) {
+                        $("#loader_feature").hide()
+                        $("#append_feature_product").empty()
+                        $("#append_feature_product").append(data.output)
+                    },
+                    error:function(error) {
+                        console.log(error)
+                    }
+                })
+            })
+
+
         })
         
     </script>

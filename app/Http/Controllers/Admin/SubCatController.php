@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
@@ -80,6 +81,25 @@ class SubCatController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function show_sub_cat(Request $request) {
+
+        $category = Category::find($request->id_cat);
+        $sub_cat =  $category->SubCat;
+        // return view('admin.insert',compact('sub_cat'));
+        $output='';
+        // $output.='<select class="selectpicker sub-cat-form" data-live-search="true" name="sub_cat_id">';
+        foreach ($sub_cat as $sub) {
+            $output.='<option value="'.$sub->id.'" data-tokens="'.$sub->sub_cat_name.'">';
+            $output.=$sub->sub_cat_name;
+            $output.='</option>';
+        }
+        // $output.='</select>';
+
+        // return $output;
+        return response()->json(['output'=>$output]);
+
     }
 
     /**

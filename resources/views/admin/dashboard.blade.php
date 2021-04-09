@@ -13,10 +13,16 @@
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
   <!-- CSS Files -->
   <link href={{ asset('assets/admin/css/material-dashboard.css?v=2.1.2') }} rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href={{ asset('assets/admin/demo/demo.css') }} rel="stylesheet" />
+  <link href="{{ asset('assets/admin/css/custom.css') }}" rel="stylesheet">
+
+  @livewireStyles
+  @livewireScripts
 </head>
 
 <body class="">
@@ -24,6 +30,8 @@
     @include('admin.includes.sidebar')
     <div class="main-panel">
       @include('admin.includes.navbar')
+      {{-- @livewire('insert') --}}
+
       <div class="content">
         <div class="container-fluid">
           <div class="row">

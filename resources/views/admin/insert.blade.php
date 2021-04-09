@@ -6,6 +6,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  
   <title>
     Material Dashboard by Creative Tim
   </title>
@@ -20,14 +21,18 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href={{ asset('assets/admin/demo/demo.css') }} rel="stylesheet" />
   <link href="{{ asset('assets/admin/css/custom.css') }}" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
 
 </head>
 
 <body class="">
-  <div class="wrapper ">
+
+  <div class="wrapper">
     @include('admin.includes.sidebar')
     <div class="main-panel">
       @include('admin.includes.navbar')
+      {{-- @include('admin.includes.sessions') --}}
       <div class="content">
         <div class="container-fluid">
             {{-- ADD CATEGORY --}}
@@ -103,34 +108,65 @@
                       <p class="card-category">Add Products</p>
                     </div>
                     <div class="card-body">
-                      <form>
+                      <form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div style="align-items: center;" class="row">
                             <div class="col-md-12">
                               <div class="form-group">
                                 <label class="bmd-label-floating">Product Name</label>
-                                <input type="text" name="product-name" class="form-control">
+                                <input type="text" name="product_name" class="form-control">
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">Product Description</label>
+                                <textarea name="product_description" class="form-control" cols="30" rows="5"></textarea>
                               </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <select name="sub_cat_id" class="selectpicker sub-cat-form" data-live-search="true">
+                                    <select id="cat_product" name="cat_id" class="selectpicker sub-cat-form" data-live-search="true">
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}" data-tokens="{{ $category->cat_name }}">{{ $category->cat_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
-                            {{-- <div class="col-md-6">
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <select name="sub_cat_id" class="selectpicker sub-cat-form" data-live-search="true">
-                                        @foreach ($sub_categories as $sub_category)
-                                            <option value="{{ $sub_category->id }}" data-tokens="{{ $sub_category->sub_cat_name }}">{{ $sub_category->sub_cat_name }}</option>
-                                        @endforeach
-                                    </select>
+                                  <select class="selectpicker sub-cat-form" id="append_select_sub_cat" name="sub_cat_id">
+                                    
+                                  </select>
                                 </div>
-                            </div> --}}
+                            </div>
+                            <div class="col-md-6 offset-md-3">
+                              <div class="form-group">
+                                  <select name="product_status" class="selectpicker">
+                                      <option value="In Stock">In Stock</option> 
+                                      <option value="Hors Stock">Hors Stock</option> 
+                                  </select>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">Product Price</label>
+                                <input style="width:71% !important" type="text" class="form-control" name="product_price" />
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">old Price</label>
+                                <input style="width:71% !important" type="text" class="form-control" name="old_price" />
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              {{-- <div class="form-group"> --}}
+                                <label class="bmd-label-floating">Product Images</label>
+                                <input type="file" name="imgs_product[]" multiple="multiple" />
+                              {{-- </div> --}}
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-primary pull-right">Add sub-categories</button>
+                        <button type="submit" class="btn btn-primary pull-right">Add Product</button>
                         <div class="clearfix"></div>
                       </form>
                     </div>
@@ -141,6 +177,9 @@
       </div>
     </div>
   </div>
+
+
+
   <!--   Core JS Files   -->
   <script src={{ asset('assets/admin/js/core/jquery.min.js') }}></script>
   <script src={{ asset('assets/admin/js/core/popper.min.js') }}></script>
@@ -184,6 +223,11 @@
   <script src={{ asset("assets/admin/js/material-dashboard.js?v=2.1.2")}} type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src={{ asset('assets/admin/demo/demo.js') }}></script>
+  
+
+
+
+
   <script>
     $(document).ready(function() {
       $().ready(function() {
@@ -362,6 +406,33 @@
 
     });
   </script>
+  <script>
+    $(document).ready(function(){
+      
+      $('#cat_product').change(function(){
+        id_cat=$(this).val();
+        // alert($(this).val());
+        $.ajax({
+          url:"{{ route('admin.ajax_sub_cat')}}",
+          type:"POST",
+          dataType:"json",
+          data:{
+            "_token": "{{ csrf_token() }}",
+            id_cat:id_cat
+          },
+          success:function(data) {
+              console.log(data.output);
+              $('#append_select_sub_cat').html(data.output).selectpicker('refresh');
+          },
+          error:function(error) {
+              console.log(error);
+          }
+        })
+      })
+    })
+  </script>
+
+  
 </body>
 
 </html>

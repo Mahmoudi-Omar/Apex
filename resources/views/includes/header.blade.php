@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="search-bar">
-        <select class="selectpicker" title="All Category">
+        <select class="selectpicker" data-size="10" title="All Category">
             {{-- @foreach ($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->cat_name }}</option>
             @endforeach --}}
