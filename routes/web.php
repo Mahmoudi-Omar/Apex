@@ -19,10 +19,12 @@ Route::get('/',[App\Http\Controllers\indexController::class,'index'])->name('ind
 Route::post('show_new_product_ajax',[App\Http\Controllers\indexController::class,'show_new_product_index'])->name('show_new_product_index');
 Route::post('show_feature_product_ajax',[App\Http\Controllers\indexController::class,'show_feature_product_ajax'])->name('show_feature_product_ajax');
 Route::get('shop',[App\Http\Controllers\ShopController::class,'index'])->name('shop');
+Route::get('product_details/{id}',[App\Http\Controllers\ShopDetails::class,'index'])->name('product_details');
 Route::get('shop_product_list',[App\Http\Controllers\ShopController::class,'shop_product_list'])->name('shop_product_list');
 Route::get('shop_product_grid',[App\Http\Controllers\ShopController::class,'shop_product_grid'])->name('shop_product_grid');
 Route::post('filter_categories',[App\Http\Controllers\ShopController::class,'filter_categories'])->name('filter_categories');
-Route::get('autocomplete',[App\Http\Controllers\ShopController::class,'autocomplete'])->name('autocomplete');
+Route::post('getItem',[App\Http\Controllers\MyCart::class,'getItem'])->name('getItem');
+Route::get('my_cart',[App\Http\Controllers\MyCart::class,'index'])->name('my_cart');
 
 Route::prefix('admin')->middleware('admin')->name('admin.')->group(function(){
     Route::get('/',function(){

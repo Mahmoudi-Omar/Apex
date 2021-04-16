@@ -34,7 +34,7 @@
         <p>My WishList</p>
     </div>
     <div class="my-cart">
-        <div class="circle-count">0</div>
+        <div class="circle-count" id="my_cart_count">0</div>
         <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart.svg') }}" />
         <p>My Cart</p>
     </div>

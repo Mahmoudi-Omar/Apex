@@ -513,6 +513,11 @@
     <script src="{{ mix('js/app.js') }}"></script>
 
     <script>
+
+        if (localStorage.getItem('cards')) {
+            
+            document.getElementById('my_cart_count').innerHTML=JSON.parse(localStorage.getItem('cards')).length;
+        }
         $('.slider').slick({
             dots: true,
             autoplay: true,

@@ -1,0 +1,150 @@
+.img {
+    .slider-for {
+        border: 1px solid #ddd;
+        img {
+            width: 100%;
+        }
+    }
+    .slider-nav {
+        display:flex;
+        justify-content: center;
+        .nav-img {
+            border: 1px solid #ddd;
+            width: 108px;
+            height: 108px;
+            margin: 10px 10px;
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.details {
+    .title {
+        h4 {
+            font-size: 20px;
+            font-weight: bold;
+            color: #444;
+            font-family: 'roboto', sans-serif;
+        }
+    }
+    .price {
+        .span-price {
+            font-size: 20px;
+            color: #5ea606 !important;
+            font-weight: bold;
+            font-family: "roboto", sans-serif;
+        }
+        .old-price {
+            font-size: 20px;
+            color: #444 !important;
+            font-weight: 300;
+            margin-left: 10px;
+            text-decoration: line-through;
+            font-family: "roboto", sans-serif;
+        }
+    }
+    .stars {
+        margin: 10px 0;
+        i {
+            color: #ffc000;
+        }
+        span {
+            margin-left: 10px;
+            font-family: 'roboto';
+            font-weight: 400;
+        }
+    }
+    .state {
+        .in-stock {
+            font-size: 14px;
+            font-family: 'roboto';
+            font-weight: 500;
+            color: $green;
+        }
+        .hors-stock {
+            font-size: 14px;
+            font-family: 'roboto';
+            font-weight: 500;
+            color: #e81b1b;   
+        }
+        // &::before {
+        //     margin-right: 2px;
+        //     vertical-align: middle;
+        //     top: -1px;
+        //     position: relative;
+        //     content: '^';
+        //     display: inline-block;
+        //     font-family: 'icomoon' !important;
+        //     font-style: normal;
+        //     font-weight: 400;
+        //     font-variant: normal;
+        //     text-transform: none;
+        //     -webkit-font-smoothing: antialiased;
+        //     -moz-osx-font-smoothing: grayscale;
+        //     text-align: center;
+        //     font-size: 14px;
+        // }
+    }
+    .description {
+        margin-top: 10px;
+        p {
+            font-size: 14px;
+            font-family: 'roboto';
+            color: #444;
+        }
+    }
+    .line {
+        height: 1px;
+        width: 100%;
+        background: #ddd;
+        margin: 15px 0;
+    }
+    .adds {
+        display: flex;
+        align-items: center;
+        .qty {
+            display: flex;
+            align-items: center;
+            span {
+                font-size: 14px;
+                font-family: 'roboto';
+                font-weight: 500;
+            }
+            input {
+                width: 60px;
+                text-align: center;
+                margin-left: 10px;
+            }    
+        }
+        .add-to-card {
+            background-color: #5ea606;
+            color: #fff;
+            padding: 7px 3px;
+            width: 35%;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-left: 15px;
+            img {
+                width: 25px;
+                margin: 0 10px;
+            }
+        }
+        .heart {
+            border: 1px solid #ddd;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            border-radius: 4px;
+            justify-content: center;
+            align-items: center;
+            margin-left: 10px;
+            i {
+                font-size: 20px;
+            }
+        }
+    }
+}

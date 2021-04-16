@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                             <div class="product-tittle">
-                                <h4>{{ $item->product_name }}</h4>
+                                <a href="{{ route('product_details',$item->id) }}"><h4>{{ $item->product_name }}</h4></a>
                             </div>
                             <div class="product-avis">
                                 <i class="fas fa-star"></i>
@@ -47,10 +47,11 @@
                                 @endif
                             </div>
                             <div class="add-hover">
-                                <div class="add-to-card">
-                                    <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
-                                    <span>Add To Cart</span>
-                                </div>
+                                    <div class="add-to-card"  onclick="addtolocalstorage({{ $item->id }})">
+                                        <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
+                                        <span>Add To Cart</span>
+                                    </div>
+                           
                                 <div class="heart-hover">
                                     <i class="far fa-heart"></i>
                                 </div>
@@ -90,6 +91,7 @@
                     </div>
                 </div>
             </div>   
+           
             <div class="col-md-9">
                 <div class="shop-content">
                     <div id="loader" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
@@ -124,9 +126,10 @@
                                         </div>
                                     </div>
                                     <div class="product-tittle">
-                                        <h4>{{ $product->product_name }}</h4>
+                                        <a href="{{ route('product_details',$product->id) }}"> <h4>{{ $product->product_name }}</h4> </a>
                                     </div>
                                     <div class="product-avis">
+                                        <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
@@ -139,7 +142,7 @@
                                         @endif
                                     </div>
                                     <div class="add-hover">
-                                        <div class="add-to-card">
+                                        <div class="add-to-card" onclick="addtolocalstorage({{ $product->id }})">
                                             <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
                                             <span>Add To Cart</span>
                                         </div>
@@ -232,62 +235,34 @@
                 </div>
             </div>
         </footer>
-        <div class="ui-widget">
-            <label for="tags">Tags: </label>
-            <input id="tags">
-          </div>
+       
     </div> <!-- end of page wrapper -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.11/dist/js/bootstrap-select.min.js"></script>
-    {{-- <script src="{{ asset('assets/js/jquery-ui.js') }}"></script> --}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="{{ asset('assets/js/notify.js') }}"></script>
 
     <script src="{{ mix('js/app.js') }}"></script>
         <script>
 
+        if (localStorage.getItem('cards')) {
+
+            document.getElementById('my_cart_count').innerHTML=JSON.parse(localStorage.getItem('cards')).length;
+        }
+
+        let shoppingCard_btn = document.getElementById('shoppingCard');
+        let cards = []
+        function addtolocalstorage(id) {
+            if (cards.includes(id)==false) {
+                cards.push(id)
+                // $.notify("I'm over here !");
+                localStorage.setItem('cards',JSON.stringify(cards))
+            }
+        }
 
         $(document).ready(function() {
-
-            $( function() {
-    var availableTags = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ];
-    $( "#tags" ).autocomplete({
-      source: availableTags
-    });
-  } );
-            // var path = "{{ route('autocomplete') }}";
-            // $('.typeahead').typeahead({
-            //     source:  function (query, process) {
-            //     return $.get(path, { query: query }, function (data) {
-            //             return process(data);
-            //         });
-            //     }
-            // });
 
             $('.cat-title').click(function(){
                 $('.cat-list').toggleClass('collapse');

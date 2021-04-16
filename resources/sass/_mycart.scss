@@ -1,0 +1,22 @@
+.shopping-box {
+    margin:20px;
+    h2 {
+        margin-bottom: 20px;
+    }
+}
+.cart-box {
+    display: flex;
+    padding: 0 35px;
+    border: 1px solid red;
+    .cart-title {
+        border: 1px solid $border-color;
+        text-align: center;
+    }
+    .cart-content {
+        border: 1px solid $border-color;
+    }
+    .sub-box {
+        display: flex;
+        flex-direction: column;
+    }
+}
