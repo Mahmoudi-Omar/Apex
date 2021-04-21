@@ -12,6 +12,8 @@ require('../../node_modules/slick-carousel/slick/slick');
 
 // require('../../node_modules/jquery-ui/')
 
+// require('../../node_modules/sweetalert2/dist/sweetalert2');
+
 require('../../node_modules/jquery-autocomplete/jquery.autocomplete');
 
 window.Vue = require('vue').default;

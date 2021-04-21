@@ -15,30 +15,33 @@ class MyCart extends Controller
         // return $request->cards_id;
         $products = Product::whereIn('id',$request->cards_id)->get();
         $output = "";
+        // $output.='<form id="form" action="" method="get">';
         foreach ($products as $product) {
             $output.='
-            <tr class="tr">
-                <td>
-                    <img width="100px" src="'.asset('assets/images/'.$product->imageProduct[0]->img_src).'" />
-                </td>
-                <td>'
-                    .$product->product_name.'
-                </td>
-                <td>
-                    <input style="width: 80px;" type="number" min="1" value="1" class="form-control qtn_input" />
-                </td>
-                <td>
-                    <p class="unit_price">'.$product->price.'</p>
-                </td>
-                <td>
-                    <p class="total_price">'.$product->price.'</p>
-                </td>
-                <td>
-                    <button class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
+                <tr class="tr">
+                    <td>
+                        <img width="100px" src="'.asset('assets/images/'.$product->imageProduct[0]->img_src).'" />
+                    </td>
+                    <td>'
+                        .$product->product_name.'
+                    </td>
+                    <td>
+                        <input style="width: 80px;" type="number" min="1" value="1" class="form-control qtn_input" />
+                    </td>
+                    <td>
+                        <p class="unit_price">'.$product->price.'</p>
+                    </td>
+                    <td>
+                        <p class="total_price">'.$product->price.'</p>
+                    </td>
+                    <td>
+                        <button onclick="delete_product('.$product->id.')" class="btn btn-delete btn-danger">Delete</button>
+                    </td>
+                </tr>
             ';
         }
+
+        // $output.='</form>';
        
         return response()->json(['output'=>$output]);
        

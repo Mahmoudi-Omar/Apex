@@ -1884,6 +1884,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ../../node_modules/slick-carousel/slick/slick */ "./node_modules/slick-carousel/slick/slick.js"); // require('../../node_modules/blueimp-file-upload/js/jquery.fileupload');
 // require('../../node_modules/jquery-ui/')
+// require('../../node_modules/sweetalert2/dist/sweetalert2');
 
 
 __webpack_require__(/*! ../../node_modules/jquery-autocomplete/jquery.autocomplete */ "./node_modules/jquery-autocomplete/jquery.autocomplete.js");
