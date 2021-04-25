@@ -47,7 +47,7 @@
                                 @endif
                             </div>
                             <div class="add-hover">
-                                    <div class="add-to-card"  onclick="addtolocalstorage({{ $item->id }})">
+                                    <div class="add-to-card"  onclick="addtolocalstorage()">
                                         <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
                                         <span>Add To Cart</span>
                                     </div>
@@ -142,7 +142,7 @@
                                         @endif
                                     </div>
                                     <div class="add-hover">
-                                        <div class="add-to-card" onclick="addtolocalstorage({{ $product->id }})">
+                                        <div class="add-to-card" onclick="addtolocalstorage({{ $product->id }},'{{ $product->imageProduct[0]->img_src }}')">
                                             <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
                                             <span>Add To Cart</span>
                                         </div>
@@ -247,20 +247,41 @@
     <script src="{{ mix('js/app.js') }}"></script>
         <script>
 
-        if (localStorage.getItem('cards')) {
-
-            document.getElementById('my_cart_count').innerHTML=JSON.parse(localStorage.getItem('cards')).length;
+        function addtolocalstorage(id,image) {
+            $(document).ready(function(){
+                $.ajax({
+                    url:" {{ route('storeInCart') }} ",
+                    type:"post",
+                    dataType : "json",
+                    data : {
+                        'product_id' : id,
+                        'product_image' : image,
+                        '_token' : "{{ csrf_token() }}",
+                    },
+                    success : function (data) {
+                        console.log(data)
+                    },
+                    error : function(error) {
+                        console.log(error)
+                    }
+                })
+            })
         }
 
-        let shoppingCard_btn = document.getElementById('shoppingCard');
-        let cards = []
-        function addtolocalstorage(id) {
-            if (cards.includes(id)==false) {
-                cards.push(id)
-                // $.notify("I'm over here !");
-                localStorage.setItem('cards',JSON.stringify(cards))
-            }
-        }
+        // if (localStorage.getItem('cards')) {
+
+        //     document.getElementById('my_cart_count').innerHTML=JSON.parse(localStorage.getItem('cards')).length;
+        // }
+
+        // let shoppingCard_btn = document.getElementById('shoppingCard');
+        // let cards = []
+        // function addtolocalstorage(id) {
+        //     if (cards.includes(id)==false) {
+        //         cards.push(id)
+        //         // $.notify("I'm over here !");
+        //         localStorage.setItem('cards',JSON.stringify(cards))
+        //     }
+        // }
 
         $(document).ready(function() {
 

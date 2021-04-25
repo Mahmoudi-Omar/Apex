@@ -25,6 +25,9 @@ Route::get('shop_product_grid',[App\Http\Controllers\ShopController::class,'shop
 Route::post('filter_categories',[App\Http\Controllers\ShopController::class,'filter_categories'])->name('filter_categories');
 Route::post('getItem',[App\Http\Controllers\MyCart::class,'getItem'])->name('getItem');
 Route::get('my_cart',[App\Http\Controllers\MyCart::class,'index'])->name('my_cart');
+Route::post('storeInCart',[App\Http\Controllers\MyCart::class,'storeInCart'])->name('storeInCart');
+Route::post('DeleteInCart',[App\Http\Controllers\MyCart::class,'DeleteInCart'])->name('DeleteInCart');
+Route::post('UpdateInCart',[App\Http\Controllers\MyCart::class,'UpdateInCart'])->name('UpdateInCart');
 
 Route::prefix('admin')->middleware('admin')->name('admin.')->group(function(){
     Route::get('/',function(){

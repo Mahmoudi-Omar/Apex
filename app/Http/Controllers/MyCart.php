@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
 class MyCart extends Controller
@@ -11,39 +12,19 @@ class MyCart extends Controller
         return view('shoppingCard');
     }
 
-    public function getItem(Request $request) {
-        // return $request->cards_id;
-        $products = Product::whereIn('id',$request->cards_id)->get();
-        $output = "";
-        // $output.='<form id="form" action="" method="get">';
-        foreach ($products as $product) {
-            $output.='
-                <tr class="tr">
-                    <td>
-                        <img width="100px" src="'.asset('assets/images/'.$product->imageProduct[0]->img_src).'" />
-                    </td>
-                    <td>'
-                        .$product->product_name.'
-                    </td>
-                    <td>
-                        <input style="width: 80px;" type="number" min="1" value="1" class="form-control qtn_input" />
-                    </td>
-                    <td>
-                        <p class="unit_price">'.$product->price.'</p>
-                    </td>
-                    <td>
-                        <p class="total_price">'.$product->price.'</p>
-                    </td>
-                    <td>
-                        <button onclick="delete_product('.$product->id.')" class="btn btn-delete btn-danger">Delete</button>
-                    </td>
-                </tr>
-            ';
-        }
-
-        // $output.='</form>';
-       
-        return response()->json(['output'=>$output]);
-       
+    public function storeInCart(Request $request) {
+        $product = Product::find($request->product_id);
+        // Cart::add($request->product_id,$product->product_name,1,$product->price);
+        Cart::add(['id' => $request->product_id, 'name' => $product->product_name, 'qty' => 1, 'price' => $product->price, 'options' => ['image' => $request->product_image]]);
+        // Cart::destroy();
     }
+
+    public function DeleteInCart(Request $request) {
+        Cart::remove($request->rowId);
+    }
+
+    public function UpdateInCart(Request $request) {
+        Cart::update($request->rowId, ['qty' => $request->qty]);
+    }
+
 }

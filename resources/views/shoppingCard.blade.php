@@ -13,6 +13,12 @@
 </head>
 <body>
 
+    {{-- @foreach (Cart::content() as $item)
+        {{ $item->image }}
+    @endforeach --}}
+
+    {{ Cart::content() }}
+
     <div class="page-wrapper">
         @include('includes.header')
         @include('includes.navbar')
@@ -31,12 +37,32 @@
                         </tr>
                     </thead>
                     <tbody id="tbody">
+                        @foreach (Cart::content() as $item)
+                            <tr class="tr">
+                                <td>
+                                    <img width="100px" src="{{ asset('assets/images/'.$item->options->image) }}" />
+                                </td>
+                                <td>
+                                    {{ $item->name }}
+                                </td>
+                                <td>
+                                    <input style="width: 80px;" type="number" min="1" value="{{ $item->qty }}" data-rowId="{{ $item->rowId }}" class="form-control qtn_input" />
+                                </td>
+                                <td>
+                                    <p class="unit_price">{{ $item->price }} DT</p>
+                                </td>
+                                <td>
+                                    <p class="total_price">{{ $item->price }} DT </p>
+                                </td>
+                                <td>
+                                    <button onclick="delete_product('{{ $item->rowId }}')" class="btn btn-delete btn-danger">Delete</button>
+                                </td>
+                            </tr>    
+                        @endforeach
                     </tbody>
                 </table>
             </form>
         </div>
-
-
         <div class="col-md-4 offset-md-8">
             <div class="total_div">
                 <h4> Total Amount : <span class="total_price_span"></span> </h4>
@@ -86,75 +112,74 @@ $(document).ready(function() {
 		mainClass: 'my-mfp-zoom-in'
 	});
 
-    $('#submit').click(function(){
-        $('#form').submit()
-    })
+    // $('#submit').click(function(){
+    //     $('#form').submit()
+    // })
 });
 
-        if (localStorage.getItem('cards')) {
-            document.getElementById('my_cart_count').innerHTML=JSON.parse(localStorage.getItem('cards')).length;
-            
+      
             $(document).ready(function(){
                var total_price_first=0
-                cards = JSON.parse(localStorage.getItem('cards'))
-                
-                $.ajax({
-                    url : "{{ route('getItem') }}",
-                    type:'post',
-                    dataType : 'json',
-                    data : {
-                        '_token' : "{{ csrf_token() }}",
-                        cards_id : cards
-                    },
-                    success : function(data) {
-                        $("#tbody").append(data.output)
-                        $('.tr').each(function(){
-                            var price = parseFloat($(this).find('.unit_price').text())
-                            // console.log(price)
-                            total_price_first = total_price_first+price
-                            $('.total_price_span').text(total_price_first+'.000')
-                        })
-                        $('.qtn_input').change(function(){
-                            
-                            update_amount()
-                        })
-                        function update_amount() {
-                            var total_price_final=0
-                            $('.tr').each(function(){
-                                var qty = $(this).find('.qtn_input').val()
-                                var unit_price = parseFloat($(this).find('.unit_price').text())
-                                var total_unit_price = qty*unit_price
-                                $(this).find('.total_price').text(total_unit_price+'.000')
-                                total_price_final = total_price_final+parseFloat(total_unit_price)
-                                $('.total_price_span').text(total_price_final+'.000')
-                            })
-                        }
-                    },
-                    error : function(error) {
-                        console.log(error)
-                    }
+               $('.tr').each(function(){
+                    var price = parseFloat($(this).find('.unit_price').text())
+                    total_price_first = total_price_first+price*parseInt($(this).find('.qtn_input').val())
+                    $('.total_price_span').text(total_price_first+'.000')
                 })
-                
+                $('.qtn_input').change(function(){    
+                    update_amount()
+                    update_qty($(this).val(),$(this).attr('data-rowId'))
+                })
+                function update_amount() {
+                    var total_price_final=0
+                    $('.tr').each(function(){
+                        var qty = $(this).find('.qtn_input').val()
+                        var unit_price = parseFloat($(this).find('.unit_price').text())
+                        var total_unit_price = qty*unit_price
+                        $(this).find('.total_price').text(total_unit_price+'.000')
+                        total_price_final = total_price_final+parseFloat(total_unit_price)
+                        $('.total_price_span').text(total_price_final+'.000')
+                    })
+                }
+                function update_qty(value,rowID) {
+                    $.ajax({
+                        url:"{{ route('UpdateInCart') }}",
+                        type:'post',
+                        dataType:'json',
+                        data : {
+                            'rowId' : rowID,
+                            'qty' : value,
+                            '_token' : "{{ csrf_token() }}"
+                        },
+                        error:function(error) {
+                            console.log(error)
+                        }
+                    })
+                }
             })
 
             function delete_product(id) {
-                // console.log(id)
-                console.log(cards)
-                cards=JSON.parse(localStorage.getItem('cards'))
-                for (let i = 0; i < cards.length; i++) {
-                    if (cards[i]==id) {
-                        cards.splice(i,1)
-                    }
-                }
-
-                localStorage.setItem('cards',JSON.stringify(cards))
-                location.reload();
-
+                $(document).ready(function(){
+                    $.ajax({
+                        url:"{{ route('DeleteInCart') }}",
+                        type:'post',
+                        dataType:'json',
+                        data : {
+                            'rowId' : id,
+                            '_token' : "{{ csrf_token() }}"
+                        },
+                        success : function(data) {
+                            console.log(data)
+                        },
+                        error:function(error) {
+                            console.log(error)
+                        }
+                    })
+                })
             }
 
 
 
-        }
+        
 
     </script>
 </body>
