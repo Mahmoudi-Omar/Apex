@@ -15,53 +15,73 @@
     <div class="page-wrapper">
         @include('includes.header')
         @include('includes.navbar')
-        <div class="shopping-box">
-            <h2>Shopping Cart</h2>
-            <form id="form" action="" method="get">
-                <table id="example" class="table table-striped table-bordered" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Image</th>
-                            <th>Product Name	</th>
-                            <th>Quantity</th>
-                            <th>Unit Price	</th>
-                            <th>Total</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody">
+        <h2>SHIPPING ADDRESS</h2>
+        <hr>
+        <form>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="checkout_box">
+                        <div class="form-group">
+                            <label for="email">Adresse Email</label>
+                            <div class="col-sm-10">
+                            <input type="email" class="form-control" id="email" placeholder="Email...">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="firstName" placeholder="First Name...">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="LastName">Last Name</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="LastName" placeholder="Last Name...">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="adresse">Adresse</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="adresse" placeholder="Adresse...">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Phone">Phone Number</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="Phone" placeholder="Phone Number...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="order_summary">
+                        <h4>Order Summary</h4>
+                        <hr class="first_hr">
+                        <h4>{{ Cart::content()->count() }} Items in Cart </h4>
+                        <hr class="second_hr">
                         @foreach (Cart::content() as $item)
-                            <tr class="tr">
-                                <td>
-                                    <img width="100px" src="{{ asset('assets/images/'.$item->options->image) }}" />
-                                </td>
-                                <td>
-                                    {{ $item->name }}
-                                </td>
-                                <td>
-                                    <input style="width: 80px;" type="number" min="1" value="{{ $item->qty }}" data-rowId="{{ $item->rowId }}" class="form-control qtn_input" />
-                                </td>
-                                <td>
-                                    <p class="unit_price">{{ $item->price }} DT</p>
-                                </td>
-                                <td>
-                                    <p class="total_price">{{ $item->subtotal }}</p>
-                                </td>
-                                <td>
-                                    <button onclick="delete_product('{{ $item->rowId }}')" class="btn btn-delete btn-danger">Delete</button>
-                                </td>
-                            </tr>    
+                            <div class="show_item">
+                                <div class="img">
+                                    <img src="{{ asset('assets/images/'.$item->options->image) }}" />
+                                </div>
+                                <div class="name">
+                                    <p class="name_p">{{ $item->name }}</p>
+                                    <p class="qty_p">Qty : {{ $item->qty }}</p>
+                                </div>
+                                <div class="price">
+                                    <span>{{ $item->subtotal }} DT</span>
+                                </div>
+                            </div>
                         @endforeach
-                    </tbody>
-                </table>
-            </form>
-        </div>
-        <div class="col-md-4 offset-md-8">
-            <div class="total_div">
-                <h4> Total Amount : <span class="total_price_span"></span> </h4>
-                <a href="{{ route('checkout') }}"><button class="btn btn-green"> Passer la commande </button> </a>
+                        <hr class="third_hr">
+                        <div class="total">
+                            Total : {{ Cart::subtotal() }} DT
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </form>
+
         <div class="newslater">
             <div class="col-4">
                 <h4>Sign Up For Newsletters</h4>
@@ -140,77 +160,10 @@
         </footer>
 
     </div>
+
     <script src="{{ mix('js/app.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>    
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.11/dist/js/bootstrap-select.min.js"></script>
-    <script>
-
-      
-            $(document).ready(function(){
-               var total_price_first=0
-               $('.tr').each(function(){
-                    var price = parseFloat($(this).find('.unit_price').text())
-                    total_price_first = total_price_first+price*parseInt($(this).find('.qtn_input').val())
-                    
-                    $('.total_price_span').text(total_price_first+'.000')
-                })
-                $('.qtn_input').change(function(){    
-                    update_amount()
-                    update_qty($(this).val(),$(this).attr('data-rowId'))
-                })
-                function update_amount() {
-                    var total_price_final=0
-                    $('.tr').each(function(){
-                        var qty = $(this).find('.qtn_input').val()
-                        var unit_price = parseFloat($(this).find('.unit_price').text())
-                        var total_unit_price = qty*unit_price
-                        $(this).find('.total_price').text(total_unit_price+'.000')
-                        total_price_final = total_price_final+parseFloat(total_unit_price)
-                        $('.total_price_span').text(total_price_final+'.000')
-                    })
-                }
-                function update_qty(value,rowID) {
-                    $.ajax({
-                        url:"{{ route('UpdateInCart') }}",
-                        type:'post',
-                        dataType:'json',
-                        data : {
-                            'rowId' : rowID,
-                            'qty' : value,
-                            '_token' : "{{ csrf_token() }}"
-                        },
-                        error:function(error) {
-                            console.log(error)
-                        }
-                    })
-                }
-            })
-
-            function delete_product(id) {
-                $(document).ready(function(){
-                    $.ajax({
-                        url:"{{ route('DeleteInCart') }}",
-                        type:'post',
-                        dataType:'json',
-                        data : {
-                            'rowId' : id,
-                            '_token' : "{{ csrf_token() }}"
-                        },
-                        success : function(data) {
-                            console.log(data)
-                        },
-                        error:function(error) {
-                            console.log(error)
-                        }
-                    })
-                })
-            }
-
-
-
-        
-
-    </script>
 </body>
 </html>

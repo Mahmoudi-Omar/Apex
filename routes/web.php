@@ -28,6 +28,7 @@ Route::get('my_cart',[App\Http\Controllers\MyCart::class,'index'])->name('my_car
 Route::post('storeInCart',[App\Http\Controllers\MyCart::class,'storeInCart'])->name('storeInCart');
 Route::post('DeleteInCart',[App\Http\Controllers\MyCart::class,'DeleteInCart'])->name('DeleteInCart');
 Route::post('UpdateInCart',[App\Http\Controllers\MyCart::class,'UpdateInCart'])->name('UpdateInCart');
+Route::get('checkout',[App\Http\Controllers\checkoutController::class,'index'])->name('checkout');
 
 Route::prefix('admin')->middleware('admin')->name('admin.')->group(function(){
     Route::get('/',function(){
