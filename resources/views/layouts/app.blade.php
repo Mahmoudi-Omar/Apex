@@ -14,8 +14,8 @@
 <body>
     <div class="page-wrapper" id="app">
        
-        @include('includes.header')
-        @include('includes.navbar')
+        {{-- @include('includes.header')
+        @include('includes.navbar') --}}
 
         {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">

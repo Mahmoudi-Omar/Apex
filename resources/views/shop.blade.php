@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
     <script src="{{ asset('js/app.js') }}" defer></script>
+    
 </head>
 <body>
 
@@ -21,7 +22,7 @@
         @include('includes.navbar')
 
             <div class="slider-shop">
-                <h2>Selection Apex</h2>
+                <h2>You May Also</h2>
                 <div class="latest-product-slider">
                     @foreach ($latest_products as $item)
                         <div class="product-card">
@@ -67,7 +68,7 @@
                     <div class="tittle">
                         <span> FILTER PRODUCTS BY </span>
                     </div>
-                    <div class="search">
+                    {{-- <div class="search">
                         <label for="search-input">Search</label>
                         <input type="text" name="search" placeholder="Searching..." class="form-control typeahead" />
                     </div>
@@ -75,7 +76,7 @@
                         <label for="price-min">Price:</label>
                         <input type="range" class="form-control" name="price-min" id="price-min" value="200" min="0" max="1000">
                     </div>
-                    <div class="line"></div>
+                    <div class="line"></div> --}}
                     <div class="categories">
                         @foreach ($categories as $category)
                             <div class="categories-content">
@@ -245,6 +246,8 @@
     <script src="{{ asset('assets/js/notify.js') }}"></script>
 
     <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ asset('assets/js/toggleCat.js') }}"></script>
+
         <script>
 
         function addtolocalstorage(id,image) {
@@ -284,11 +287,6 @@
         // }
 
         $(document).ready(function() {
-
-            $('.cat-title').click(function(){
-                $('.cat-list').toggleClass('collapse');
-                $('.fa-chevron-down').toggleClass('rotate');
-            })
             $("#loader").hide()
             $("#product-list").click(function(){
                 $.ajax({

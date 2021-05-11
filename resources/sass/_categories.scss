@@ -20,6 +20,9 @@
         }
     }
     .cat-list {
+        a:hover {
+            color: #fff;
+        }
         ul {
             padding: 0;
             margin-top: 15px;
@@ -46,6 +49,9 @@
             &:hover {
                 background-color: $green;
                 color: #fff;
+                a {
+                    color: #fff;
+                }
             }
         }
     }

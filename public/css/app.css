@@ -14072,6 +14072,10 @@ p {
   margin-left: 15px;
 }
 
+.categoires .cat-list a:hover {
+  color: #fff;
+}
+
 .categoires .cat-list ul {
   padding: 0;
   margin-top: 15px;
@@ -14102,6 +14106,10 @@ p {
 
 .categoires .cat-list .li-content:hover {
   background-color: #5ea606;
+  color: #fff;
+}
+
+.categoires .cat-list .li-content:hover a {
   color: #fff;
 }
 
@@ -15278,6 +15286,24 @@ a:hover {
 .order_summary .total {
   text-align: right;
   font-size: 18px;
+}
+
+.btn-checkout-div {
+  width: 50%;
+}
+
+.btn-checkout-div .btn-green {
+  float: right;
+  background: #5ea606;
+  color: #fff;
+  font-size: 14px;
+  font-family: "roboto";
+  font-weight: 500;
+}
+
+.checkout-page .form-control:focus {
+  border-color: #5ea606;
+  box-shadow: 0 0 0 0.2rem #5ea606;
 }
 
 

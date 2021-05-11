@@ -12,45 +12,70 @@
 </head>
 <body>
 
-    <div class="page-wrapper">
+    <div class="page-wrapper checkout-page">
         @include('includes.header')
         @include('includes.navbar')
         <h2>SHIPPING ADDRESS</h2>
         <hr>
-        <form>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <form action="{{ route('sendOrder') }}" method="post">
+            @csrf
             <div class="row">
                 <div class="col-md-8">
                     <div class="checkout_box">
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="email">Adresse Email</label>
                             <div class="col-sm-10">
-                            <input type="email" class="form-control" id="email" placeholder="Email...">
+                                <input type="email" value="{{ old('email') }}" name="email" class="form-control" id="email" placeholder="Email..." required />
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="firstName">First Name</label>
+                        </div> --}}
+                        {{-- <div class="form-group">
+                            <label for="Password">Password</label>
                             <div class="col-sm-10">
-                            <input type="text" class="form-control" id="firstName" placeholder="First Name...">
+                                <input type="Password" name="password" class="form-control" id="Password" placeholder="Password..." required />
+                            </div>
+                        </div> --}}
+                        {{-- <div class="form-group">
+                            <label for="Password-confirm">Confirm password</label>
+                            <div class="col-sm-10">
+                                <input type="Password" name="passwordConfirmation" class="form-control" id="Password-confirm" placeholder="Password..." />
+                            </div>
+                        </div> --}}
+                        <div class="form-group">
+                            <label for="full_name">Full Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" value="{{ old('full_name') }}" name="full_name" class="form-control" id="full_name" placeholder="Full Name..." required />
                             </div>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="LastName">Last Name</label>
                             <div class="col-sm-10">
-                            <input type="text" class="form-control" id="LastName" placeholder="Last Name...">
+                                <input type="text" value="{{ old('last_name') }}" name="last_name" class="form-control" id="LastName" placeholder="Last Name..." required />
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="adresse">Adresse</label>
-                            <div class="col-sm-10">
-                            <input type="text" class="form-control" id="adresse" placeholder="Adresse...">
-                            </div>
-                        </div>
+                        </div> --}}
+
                         <div class="form-group">
                             <label for="Phone">Phone Number</label>
                             <div class="col-sm-10">
-                            <input type="text" class="form-control" id="Phone" placeholder="Phone Number...">
+                                <input type="text" name="phone" value="{{ old('phone') }}" class="form-control" id="Phone" placeholder="Phone Number..." required />
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label for="adresse">Adresse</label>
+                            <div class="col-sm-10">
+                                <input type="text" value="{{ old('adresse') }}" name="adresse" class="form-control" id="adresse" placeholder="Adresse..." required />
+                            </div>
+                        </div>
+                       
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -78,6 +103,9 @@
                             Total : {{ Cart::subtotal() }} DT
                         </div>
                     </div>
+                </div>
+                <div class="btn-checkout-div">
+                    <button type="submit" class="btn btn-green">Checkout</button>
                 </div>
             </div>
         </form>
@@ -165,5 +193,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>    
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.11/dist/js/bootstrap-select.min.js"></script>
+    <script src="{{ asset('assets/js/toggleCat.js') }}"></script>
+
 </body>
 </html>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
@@ -9,7 +10,9 @@ use Illuminate\Http\Request;
 class MyCart extends Controller
 {
     public function index() {
-        return view('shoppingCard');
+        $categories = Category::all();
+        $side_categories = Category::take(9)->get();
+        return view('shoppingCard',compact(['categories','side_categories']));
     }
 
     public function storeInCart(Request $request) {

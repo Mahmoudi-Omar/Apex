@@ -23,168 +23,213 @@
   <link href="{{ asset('assets/admin/css/custom.css') }}" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
-
 </head>
 
 <body class="">
-
-  <div class="wrapper">
+  <div class="wrapper ">
     @include('admin.includes.sidebar')
     <div class="main-panel">
-      @include('admin.includes.navbar')
-      {{-- @include('admin.includes.sessions') --}}
+      <!-- Navbar -->
+      {{-- <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="javascript:;">Table List</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end">
+            <form class="navbar-form">
+              <div class="input-group no-border">
+                <input type="text" value="" class="form-control" placeholder="Search...">
+                <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                  <i class="material-icons">search</i>
+                  <div class="ripple-container"></div>
+                </button>
+              </div>
+            </form>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="javascript:;">
+                  <i class="material-icons">dashboard</i>
+                  <p class="d-lg-none d-md-block">
+                    Stats
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">notifications</i>
+                  <span class="notification">5</span>
+                  <p class="d-lg-none d-md-block">
+                    Some Actions
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Mike John responded to your email</a>
+                  <a class="dropdown-item" href="#">You have 5 new tasks</a>
+                  <a class="dropdown-item" href="#">You're now friend with Andrew</a>
+                  <a class="dropdown-item" href="#">Another Notification</a>
+                  <a class="dropdown-item" href="#">Another One</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">person</i>
+                  <p class="d-lg-none d-md-block">
+                    Account
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                  <a class="dropdown-item" href="#">Profile</a>
+                  <a class="dropdown-item" href="#">Settings</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Log out</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav> --}}
+      <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
-            {{-- ADD CATEGORY --}}
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">Simple Table</h4>
+                  <p class="card-category"> Here is a subtitle for this table</p>
                 </div>
-            @endif
-            <div class="add-categories">
-                <div class="card">
-                    <div class="card-header card-header-primary">
-                      <h4 class="card-title">Add Categories</h4>
-                      <p class="card-category">Add some Categories</p>
-                    </div>
-                    <div class="card-body">
-                      <form action="{{ route('admin.insertion.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label class="bmd-label-floating">Category Name</label>
-                                <input type="text" name="cat_name" class="form-control" />
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                {{-- <label class="bmd-label-floating">Category Image</label> --}}
-                                <input type="file" name="cat_img" class="form-control" />
-                              </div>
-                            </div>
-                          </div>
-                        <button type="submit" class="btn btn-primary">Add Categories</button>
-                        {{-- <div class="clearfix"></div> --}}
-                      </form>
-                    </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-primary">
+                        <th>
+                          User Name
+                        </th>
+                        <th>
+                         product Name
+                        </th>
+                        <th>
+                          Quantity
+                        </th>
+                        <th>
+                          price
+                        </th>
+                        <th>
+                          phone
+                        </th>
+                        <th>
+                          adresse
+                        </th>
+                      </thead>
+                      <tbody>
+                          {{-- {{ $orders }}  --}}
+                          {{-- @foreach ($user->orders as $item)
+                          @foreach ($item->user as $item_user)
+                              <tr>
+                                  <td>
+                                      {{ $item_user->first_name }} {{ $item_user->last_name }}
+                                  </td>
+                                  <td>
+                                      {{ $item->product_name }}
+                                  </td>
+                                  <td>
+                                      {{ $item->pivot->qty }}
+                                  </td>
+                                  <td>
+                                      {{ $item->pivot->price }}
+                                  </td>
+                                  <td>
+                                      {{ $item_user->phone }}
+                                  </td>
+                                  {{-- <td>
+                                      {{ $item_user->adresse }}
+                                  </td> --}}
+                              {{-- </tr>
+                          @endforeach
+                         
+                        
+                      @endforeach  - --}}
+                        @foreach ($customers as $customer)
+                          <tr>
+
+                            <td>
+                                {{ $customer->full_name }} 
+                            </td>
+
+                            <td>
+                              @foreach ( $customer->orders as $order)
+                                
+                                <p>{{ $order->product_name }} </p>
+                                <hr>
+                        
+                              @endforeach
+                            </td>
+                          
+                            <td>
+                            
+                              @foreach ( $customer->orders as $order)
+                                
+                                <p>{{ $order->pivot->qty }} </p>
+                                <hr>
+                      
+                              @endforeach
+                            </td>
+                           
+                            <td>
+                            
+                              @foreach ( $customer->orders as $order)
+                                
+                                <p>{{ $order->pivot->price }} </p>
+                                <hr>
+                      
+                              @endforeach
+                            </td>
+
+                            <td>
+                              {{ $customer->phone }}
+                            </td>
+
+                            <td>
+                              {{ $customer->adresse }}
+                            </td>
+
+                          </tr>
+                        @endforeach
+                        {{-- <tr>
+                          <td>
+                            1
+                          </td>
+                          <td>
+                            Dakota Rice
+                          </td>
+                          <td>
+                            Niger
+                          </td>
+                          <td>
+                            Oud-Turnhout
+                          </td>
+                          <td class="text-primary">
+                            $36,738
+                          </td>
+                        </tr> --}}
+                      </tbody>
+                    </table>
                   </div>
-            </div> 
-            {{--END OF ADD CATEGORY --}}
-            <div class="add-sub-categories">
-                <div class="card">
-                    <div class="card-header card-header-primary">
-                      <h4 class="card-title">Add sub-categories</h4>
-                      <p class="card-category">Add sub-categories</p>
-                    </div>
-                    <div class="card-body">
-                      <form action="{{ route('admin.subcatinsert.store') }}" method="post">
-                        @csrf
-                        <div style="align-items: center;" class="row">
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label class="bmd-label-floating">sub-categories</label>
-                                <input type="text" name="sub_cat_name" class="form-control" />
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <select name="cat_id" class="selectpicker sub-cat-form" data-live-search="true">
-                                        @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}" data-tokens="{{ $category->cat_name }}">{{ $category->cat_name }}</option>
-                                        @endforeach
-                                    </select>                                      
-                                </div>
-                            </div>
-                          </div>
-                        <button type="submit" class="btn btn-primary">Add sub-categories</button>
-                      </form>
-                    </div>
-                  </div>
-            </div> 
-            {{--END OF ADD SUB-CATEGORY --}}
-            <div class="add-products">
-                <div class="card">
-                    <div class="card-header card-header-primary">
-                      <h4 class="card-title">Add Products</h4>
-                      <p class="card-category">Add Products</p>
-                    </div>
-                    <div class="card-body">
-                      <form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div style="align-items: center;" class="row">
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <label class="bmd-label-floating">Product Name</label>
-                                <input type="text" name="product_name" class="form-control">
-                              </div>
-                            </div>
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <label class="bmd-label-floating">Product Description</label>
-                                <textarea name="product_description" class="form-control" cols="30" rows="5"></textarea>
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <select id="cat_product" name="cat_id" class="selectpicker sub-cat-form" data-live-search="true">
-                                        @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}" data-tokens="{{ $category->cat_name }}">{{ $category->cat_name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                  <select class="selectpicker sub-cat-form" id="append_select_sub_cat" name="sub_cat_id">
-                                    
-                                  </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6 offset-md-3">
-                              <div class="form-group">
-                                  <select name="product_status" class="selectpicker">
-                                      <option value="In Stock">In Stock</option> 
-                                      <option value="Hors Stock">Hors Stock</option> 
-                                  </select>
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label class="bmd-label-floating">Product Price</label>
-                                <input style="width:71% !important" type="text" class="form-control" name="product_price" />
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label class="bmd-label-floating">old Price</label>
-                                <input style="width:71% !important" type="text" class="form-control" name="old_price" />
-                              </div>
-                            </div>
-                            <div class="col-md-12">
-                              {{-- <div class="form-group"> --}}
-                                <label class="bmd-label-floating">Product Images</label>
-                                <input type="file" name="imgs_product[]" multiple="multiple" />
-                              {{-- </div> --}}
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary pull-right">Add Product</button>
-                        <div class="clearfix"></div>
-                      </form>
-                    </div>
-                  </div>
-            </div> 
-            {{--END OF ADD PRODUCTS --}}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
-
+  <!--   Core JS Files   -->
 
   <!--   Core JS Files   -->
   <script src={{ asset('assets/admin/js/core/jquery.min.js') }}></script>
@@ -230,8 +275,6 @@
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src={{ asset('assets/admin/demo/demo.js') }}></script>
   
-
-
 
 
   <script>
@@ -405,40 +448,6 @@
       });
     });
   </script>
-  <script>
-    $(document).ready(function() {
-      // Javascript method's body can be found in assets/js/demos.js
-      md.initDashboardPageCharts();
-
-    });
-  </script>
-  <script>
-    $(document).ready(function(){
-      
-      $('#cat_product').change(function(){
-        id_cat=$(this).val();
-        // alert($(this).val());
-        $.ajax({
-          url:"{{ route('admin.ajax_sub_cat')}}",
-          type:"POST",
-          dataType:"json",
-          data:{
-            "_token": "{{ csrf_token() }}",
-            id_cat:id_cat
-          },
-          success:function(data) {
-              console.log(data.output);
-              $('#append_select_sub_cat').html(data.output).selectpicker('refresh');
-          },
-          error:function(error) {
-              console.log(error);
-          }
-        })
-      })
-    })
-  </script>
-
-  
 </body>
 
 </html>

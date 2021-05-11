@@ -29,6 +29,8 @@ Route::post('storeInCart',[App\Http\Controllers\MyCart::class,'storeInCart'])->n
 Route::post('DeleteInCart',[App\Http\Controllers\MyCart::class,'DeleteInCart'])->name('DeleteInCart');
 Route::post('UpdateInCart',[App\Http\Controllers\MyCart::class,'UpdateInCart'])->name('UpdateInCart');
 Route::get('checkout',[App\Http\Controllers\checkoutController::class,'index'])->name('checkout');
+Route::post('sendOrder',[App\Http\Controllers\checkoutController::class,'sendOrder'])->name('sendOrder');
+Route::get('about-us',[App\Http\Controllers\AboutUs::class,'index'])->name('about-us');
 
 Route::prefix('admin')->middleware('admin')->name('admin.')->group(function(){
     Route::get('/',function(){
@@ -44,6 +46,7 @@ Route::prefix('admin')->middleware('admin')->name('admin.')->group(function(){
     Route::post('update_product',[App\Http\Controllers\Admin\EditController::class,'update_product'])->name('edit.update_product');
     Route::post('ajax_edit_product',[App\Http\Controllers\Admin\EditController::class,'ajax_edit_product'])->name('ajax_edit_product');
     Route::post('ajax_product_sub_cat',[App\Http\Controllers\Admin\EditController::class,'ajax_product_sub_cat'])->name('ajax_product_sub_cat');
+    Route::get('order_list',[App\Http\Controllers\Admin\orderlistController::class,'index'])->name('orderlist');
 });
 
 

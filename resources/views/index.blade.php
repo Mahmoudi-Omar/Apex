@@ -27,14 +27,16 @@
                 </div>
             </div>
             <div class="categories-slider">
-                <div class="category">
-                    <div class="category-content">
-                        <img src="{{ asset('assets/images/18-600x600.jpg') }}" />
-                        <h5>Gommage</h5>
-                        <p>15 Devices</p>
+                @foreach ($popular_categories as $popular_category)
+                    <div class="category">
+                        <div class="category-content">
+                            <img src="{{ asset('assets/images/18-600x600.jpg') }}" />
+                            <h5>{{ $popular_category->cat_name }}</h5>
+                            <p>{{ $popular_category->Product->count() }} Products</p>
+                        </div>
                     </div>
-                </div>
-                <div class="category">
+                @endforeach              
+                {{-- <div class="category">
                     <div class="category-content">
                         <img src="{{ asset('assets/images/18-600x600.jpg') }}" />
                         <h5>Gommage</h5>
@@ -96,7 +98,7 @@
                         <p>15 Devices</p>
 
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
 
@@ -514,6 +516,10 @@
 
     <script>
 
+
+    
+ 
+
         if (localStorage.getItem('cards')) {
             
             document.getElementById('my_cart_count').innerHTML=JSON.parse(localStorage.getItem('cards')).length;
@@ -590,7 +596,6 @@
                     }
                 })
             })
-
 
         })
         

@@ -8,12 +8,39 @@ use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
-    public function index() {
-        $categories = Category::all();
-        $products = Product::latest()->paginate(48);
-        $latest_products = Product::take(10)->inRandomOrder()->get();
-        return view('shop',compact(['categories','latest_products','products']));
+    public function index(Request $request) {
+        if ($request->search!=null && $request->category!=null) {
+            $categories = Category::all();
+            $side_categories = Category::take(9)->get();
+            $products = Product::where('cat_id','=',$request->category)->where('product_name','like','%'.$request->search.'%')->paginate(48);
+            $latest_products = Product::take(10)->inRandomOrder()->where('cat_id','=',$request->category)->get();
+            return view('shop',compact(['categories','latest_products','products','side_categories']));
+        } 
+        else if ($request->search!=null) {
+            $categories = Category::all();
+            $side_categories = Category::take(9)->get();
+            $products = Product::where('product_name','like','%'.$request->search.'%')->paginate(48);
+            $latest_products = Product::take(10)->inRandomOrder()->get();
+            return view('shop',compact(['categories','latest_products','products']));
+        } 
+        else if ($request->category!=null) {
+            $categories = Category::all();
+            $side_categories = Category::take(9)->get();
+            $products = Product::where('cat_id','=',$request->category)->paginate(48);
+            $latest_products = Product::take(10)->inRandomOrder()->get();
+            return view('shop',compact(['categories','latest_products','products','side_categories']));
+        }
+
+        else {
+            $categories = Category::all();
+            $side_categories = Category::take(9)->get();
+            $side_categories = Category::take(9)->get();
+            $products = Product::latest()->paginate(48);
+            $latest_products = Product::take(10)->inRandomOrder()->get();
+            return view('shop',compact(['categories','latest_products','products','side_categories']));
+        }
     }
+
 
     public function shop_product_list() {
         $products = Product::latest()->paginate(48);

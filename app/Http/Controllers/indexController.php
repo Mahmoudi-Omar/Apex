@@ -15,10 +15,13 @@ class indexController extends Controller
         $feature_categories_filter=Category::take(4)->inRandomOrder()->get();
         $feature_products = Product::take(10)->inRandomOrder()->get();
         $new_products = Product::orderBy('id','desc')->take(5)->get();
+        $side_categories = Category::take(9)->get();
+        $popular_categories = Category::take(10)->get();
+        
 
         return view('index',compact([
             'categories','feature_products','new_products','categories_filter_new_product'
-            ,'feature_categories_filter']));
+            ,'feature_categories_filter','side_categories','popular_categories']));
     
     }
 

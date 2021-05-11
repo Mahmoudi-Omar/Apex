@@ -86,15 +86,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.11/dist/js/bootstrap-select.min.js"></script>
 <script src="{{ mix('js/app.js') }}"></script>
-<script>
+<script src="{{ asset('assets/js/toggleCat.js') }}"></script>
 
-    $(document).ready(function(){
-        $('.cat-title').click(function(){
-            $('.cat-list').toggleClass('collapse');
-            $('.fa-chevron-down').toggleClass('rotate');
-        })
-    })
-
-</script>
 </body>
 </html>

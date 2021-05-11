@@ -29,12 +29,12 @@
           </a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" href="./tables.html">
+          <a class="nav-link" href="{{ route('admin.orderlist') }}">
             <i class="material-icons">content_paste</i>
-            <p>Table List</p>
+            <p>Order List</p>
           </a>
         </li>
-        <li class="nav-item ">
+        {{-- <li class="nav-item ">
           <a class="nav-link" href="./typography.html">
             <i class="material-icons">library_books</i>
             <p>Typography</p>
@@ -69,7 +69,7 @@
             <i class="material-icons">unarchive</i>
             <p>Upgrade to PRO</p>
           </a>
-        </li>
+        </li> --}}
       </ul>
     </div>
   </div>

@@ -56,12 +56,14 @@
                 </table>
             </form>
         </div>
-        <div class="col-md-4 offset-md-8">
-            <div class="total_div">
-                <h4> Total Amount : <span class="total_price_span"></span> </h4>
-                <a href="{{ route('checkout') }}"><button class="btn btn-green"> Passer la commande </button> </a>
-            </div>
-        </div>
+        @if (Cart::count()>0)
+            <div class="col-md-4 offset-md-8">
+                <div class="total_div">
+                    <h4> Total Amount : <span class="total_price_span"></span> </h4>
+                    <a href="{{ route('checkout') }}"><button class="btn btn-green"> Passer la commande </button> </a>
+                </div>
+            </div>            
+        @endif
         <div class="newslater">
             <div class="col-4">
                 <h4>Sign Up For Newsletters</h4>
@@ -144,72 +146,71 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>    
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.11/dist/js/bootstrap-select.min.js"></script>
+    <script src="{{ asset('assets/js/toggleCat.js') }}"></script>
+
     <script>
 
       
-            $(document).ready(function(){
-               var total_price_first=0
-               $('.tr').each(function(){
-                    var price = parseFloat($(this).find('.unit_price').text())
-                    total_price_first = total_price_first+price*parseInt($(this).find('.qtn_input').val())
-                    
-                    $('.total_price_span').text(total_price_first+'.000')
-                })
-                $('.qtn_input').change(function(){    
-                    update_amount()
-                    update_qty($(this).val(),$(this).attr('data-rowId'))
-                })
-                function update_amount() {
-                    var total_price_final=0
-                    $('.tr').each(function(){
-                        var qty = $(this).find('.qtn_input').val()
-                        var unit_price = parseFloat($(this).find('.unit_price').text())
-                        var total_unit_price = qty*unit_price
-                        $(this).find('.total_price').text(total_unit_price+'.000')
-                        total_price_final = total_price_final+parseFloat(total_unit_price)
-                        $('.total_price_span').text(total_price_final+'.000')
-                    })
-                }
-                function update_qty(value,rowID) {
-                    $.ajax({
-                        url:"{{ route('UpdateInCart') }}",
-                        type:'post',
-                        dataType:'json',
-                        data : {
-                            'rowId' : rowID,
-                            'qty' : value,
-                            '_token' : "{{ csrf_token() }}"
-                        },
-                        error:function(error) {
-                            console.log(error)
-                        }
-                    })
-                }
+        $(document).ready(function(){
+            var total_price_first=0
+            $('.tr').each(function(){
+                var price = parseFloat($(this).find('.unit_price').text())
+                total_price_first = total_price_first+price*parseInt($(this).find('.qtn_input').val())
+                
+                $('.total_price_span').text(total_price_first+'.000')
             })
-
-            function delete_product(id) {
-                $(document).ready(function(){
-                    $.ajax({
-                        url:"{{ route('DeleteInCart') }}",
-                        type:'post',
-                        dataType:'json',
-                        data : {
-                            'rowId' : id,
-                            '_token' : "{{ csrf_token() }}"
-                        },
-                        success : function(data) {
-                            console.log(data)
-                        },
-                        error:function(error) {
-                            console.log(error)
-                        }
-                    })
+            $('.qtn_input').change(function(){    
+                update_amount()
+                update_qty($(this).val(),$(this).attr('data-rowId'))
+            })
+            function update_amount() {
+                var total_price_final=0
+                $('.tr').each(function(){
+                    var qty = $(this).find('.qtn_input').val()
+                    var unit_price = parseFloat($(this).find('.unit_price').text())
+                    var total_unit_price = qty*unit_price
+                    $(this).find('.total_price').text(total_unit_price+'.000')
+                    total_price_final = total_price_final+parseFloat(total_unit_price)
+                    $('.total_price_span').text(total_price_final+'.000')
                 })
             }
+            function update_qty(value,rowID) {
+                $.ajax({
+                    url:"{{ route('UpdateInCart') }}",
+                    type:'post',
+                    dataType:'json',
+                    data : {
+                        'rowId' : rowID,
+                        'qty' : value,
+                        '_token' : "{{ csrf_token() }}"
+                    },
+                    error:function(error) {
+                        console.log(error)
+                    }
+                })
+            }
+        })
 
+        function delete_product(id) {
+            $(document).ready(function(){
+                $.ajax({
+                    url:"{{ route('DeleteInCart') }}",
+                    type:'post',
+                    dataType:'json',
+                    data : {
+                        'rowId' : id,
+                        '_token' : "{{ csrf_token() }}"
+                    },
+                    success : function(data) {
+                        console.log(data)
+                    },
+                    error:function(error) {
+                        console.log(error)
+                    }
+                })
+            })
+        }
 
-
-        
 
     </script>
 </body>

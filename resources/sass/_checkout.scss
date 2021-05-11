@@ -54,3 +54,21 @@
         font-size: 18px;
     }
 }
+.btn-checkout-div {
+    width: 50%;
+    .btn-green {
+        float: right;
+        background: $green;
+        color: #fff;
+        font-size: 14px;
+        font-family: 'roboto';
+        font-weight: 500;
+    }
+}
+
+.checkout-page {
+    .form-control:focus {
+        border-color: $green;
+        box-shadow: 0 0 0 0.2rem $green;
+    }
+}

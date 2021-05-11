@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\SubCategory;
+use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -40,11 +41,17 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'cat_name' => 'required'
+            'cat_name' => 'required',
+            'cat_img'  => 'required'
         ]);
 
+        $image = $request->cat_img;
+
+        Image::make($image)->resize(158,158)->save(public_path('assets/images/'.$image->hashName()));
+
         Category::create([
-            'cat_name'=>$request->cat_name
+            'cat_name'=>$request->cat_name,
+            'cat_img'=>$image->hasName()
         ]);
         session()->flash('add_cat','Category added with successufly');
         return redirect()->back();
