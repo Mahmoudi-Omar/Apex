@@ -20,7 +20,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-9 custom-navbar-resp">
         <div class="custom-navbar">
             <span class="fas fa-home"></span>
             <h4> <a style="color:#5ea606" href="{{ route('index') }}"> HOME </a> </h4>

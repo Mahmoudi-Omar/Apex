@@ -10,7 +10,7 @@
     </a>
     <form action="{{ route('shop') }}" method="get">
         <div class="search-bar">
-            <select class="selectpicker" name="category" data-size="10" title="All Category">
+            <select class="selectpicker categories-filter-serach" name="category" data-size="10" title="All Category">
                 @foreach ($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->cat_name }}</option>
                 @endforeach

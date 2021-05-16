@@ -47,6 +47,7 @@ Route::prefix('admin')->middleware('admin')->name('admin.')->group(function(){
     Route::post('ajax_edit_product',[App\Http\Controllers\Admin\EditController::class,'ajax_edit_product'])->name('ajax_edit_product');
     Route::post('ajax_product_sub_cat',[App\Http\Controllers\Admin\EditController::class,'ajax_product_sub_cat'])->name('ajax_product_sub_cat');
     Route::get('order_list',[App\Http\Controllers\Admin\orderlistController::class,'index'])->name('orderlist');
+    Route::get('delete',[App\Http\Controllers\Admin\DeleteController::class,'index'])->name('delete');
 });
 
 

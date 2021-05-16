@@ -13,8 +13,8 @@
 <body>
 
     <div class="page-wrapper checkout-page">
-        @include('includes.header')
-        @include('includes.navbar')
+        {{-- @include('includes.header') --}}
+        {{-- @include('includes.navbar') --}}
         <h2>SHIPPING ADDRESS</h2>
         <hr>
         @if ($errors->any())

@@ -29,6 +29,12 @@
           </a>
         </li>
         <li class="nav-item ">
+          <a class="nav-link" href="{{ route('admin.delete') }}">
+            <i class="material-icons">person</i>
+            <p>Delete</p>
+          </a>
+        </li>
+        <li class="nav-item ">
           <a class="nav-link" href="{{ route('admin.orderlist') }}">
             <i class="material-icons">content_paste</i>
             <p>Order List</p>

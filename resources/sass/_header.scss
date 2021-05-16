@@ -2,6 +2,9 @@
     display: flex;
     align-items: center;
     margin-bottom: 40px;
+    @media (max-width:$mobile) {
+        justify-content: space-between;
+    }
     .logo {
         display: flex;
         img {
@@ -14,6 +17,9 @@
             h4 {
                 font-weight: bolder;
                 margin: 0;
+            }
+            @media (max-width:$mobile) {
+                display: none;
             }
         }
     }
@@ -28,6 +34,9 @@
         .headphone-fas {
             font-size: 35px;
             transform: translateY(4px);
+        }
+        @media (max-width:768px) {
+            display: none;
         }
     }
     .account {
@@ -110,6 +119,14 @@
         display: flex;
         margin-left: 90px;
         position: relative;
+        @media (max-width:$mobile) {
+            margin-left: 0;
+        }
+        .categories-filter-serach {
+            @media (max-width:768px) {
+                display: none;
+            }
+        }
         button {
             background-color: #fff;
             border-radius: 20px;
@@ -137,6 +154,15 @@
             border-top-right-radius: 20px;
             border-bottom-right-radius: 20px;
             width: 240px;
+            @media (max-width:$mobile) {
+                width: 100%;
+                border: 1px solid #ddd;
+                border-top-left-radius: 20px;
+                border-bottom-left-radius: 20px;
+                height: 50px;
+                border-top-right-radius: 20px;
+                border-bottom-right-radius: 20px;
+            }
         }
         .search-icon {
             position: absolute;
@@ -150,6 +176,14 @@
             align-items: center;
             border-radius: 50%;
             color: #fff;
+            @media (max-width:$mobile) {
+                position: absolute;
+                right: 10px;
+                top: 10px;
+                background: #5ea606;
+                width: 27px;
+                height: 28px;
+            }
         }
     }
 }

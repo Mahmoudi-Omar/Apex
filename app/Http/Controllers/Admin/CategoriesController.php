@@ -51,7 +51,7 @@ class CategoriesController extends Controller
 
         Category::create([
             'cat_name'=>$request->cat_name,
-            'cat_img'=>$image->hasName()
+            'cat_img'=>$image->hashName()
         ]);
         session()->flash('add_cat','Category added with successufly');
         return redirect()->back();

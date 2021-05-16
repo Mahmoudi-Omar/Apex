@@ -1,3 +1,4 @@
+// aside-img-slider
 .categoires {
     border: 1px solid #ddd;
     // height: 430px;
@@ -78,6 +79,9 @@
             color: $green;
         }
     }
+    @media (max-width:768) {
+        display: none;
+    }
 }
 
 .slider-content {
@@ -119,8 +123,14 @@
             top: 20px;
             height: 170px;
         }
+        @media (max-width:768px) {
+            display: none;
+        }
     }
     .aside-img-bottom-slider {
+        @media (max-width:768px) {
+            display: none;
+        }
         img {
             width: 200px;
             position: absolute;

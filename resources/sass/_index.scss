@@ -19,16 +19,24 @@ p {
     .top-tittle {
         display: flex;
         align-items: center;
-    
+        @media (max-width:$mobile) {
+            justify-content: space-between;
+        }
         .line {
             width: 75%;
             background: #ddd;
             height: 1px;
             margin: 0 20px;
+            @media (max-width:$mobile) {
+                display: none;
+            }
         }   
         strong {
             font-size: 22px;
             font-family: 'roboto';
+        }
+        .arrows {
+            display: flex;
         }
         .arrow {
             background: #fff;
@@ -99,6 +107,9 @@ p {
     .top-tittle {
         display: flex;
         align-items: center;
+        @media (max-width:$mobile) {
+            justify-content: space-between;
+        }
         h4 {
             font-size: 22px;
             font-family: 'roboto';
@@ -110,6 +121,9 @@ p {
             background: #ddd;
             margin: 0 10;
             margin: 0 15px;
+            @media (max-width:$mobile) {
+                display: none;
+            }
         }
         .new-product-cat-list {
             margin: 0 5px;
@@ -120,12 +134,24 @@ p {
                 background-color: $green;
                 color: #fff;
             }
+            @media (max-width:$mobile) {
+                display: none;
+            }
+        }
+        .new-product-cat-list-responsive {
+            display: none;
+            @media (max-width:$mobile) {
+                display: block;
+            }
         }
     }
 .card-wrapper {
     display: flex;
     margin-top: 20px;
     position: relative;
+    @media (max-width:$mobile) {
+        flex-direction: column;
+    }
     .product-card {
         .product-price {
             margin-top: 10px;
@@ -149,6 +175,9 @@ p {
             .add-hover {
                 bottom: -40px;
                 opacity: 1;
+                @media (max-width:$mobile) {
+                    bottom: 0px;
+                }
             }
         }
         .img-card {
@@ -209,11 +238,17 @@ p {
                 &:hover {
                     color: $green;
                 }
+                @media (max-width:$mobile) {
+                    font-size: 22px;
+                }
             }
         }
         .product-avis {
             i {
                 color:#ffc000;
+                @media (max-width:$mobile) {
+                    font-size: 22px;
+                }
             }
         }
         .product-price {
@@ -223,6 +258,9 @@ p {
                 font-weight: 700;
                 font-size: 16px;
                 // color: $green;
+                @media (max-width:$mobile) {
+                    font-size: 22px;
+                }
             }
          
         }
@@ -233,6 +271,9 @@ p {
             bottom:-15px;
             opacity: 0;
             transition: all .3s;
+            @media (max-width:$mobile) {
+                width: 100%;
+            }
             .add-to-card {
                 background-color: #5ea606;
                 color: #fff;
@@ -245,11 +286,17 @@ p {
                 img {
                     width: 25px;
                     margin: 0 10px;
+                    @media (max-width:$mobile) {
+                        width: 15%;
+                    }
                 }
                 }
                 span {
                     font-size: 15px;
                     font-weight: 400;
+                    @media (max-width:$mobile) {
+                        font-size: 190%;
+                    }
                 }
             }
             .heart-hover {
@@ -290,16 +337,24 @@ p {
     .top-tittle {
         display: flex;
         align-items: center;
-    
+        @media (max-width:$mobile) {
+            justify-content: space-between;
+        }
         .line {
             width: 75%;
             background: #ddd;
             height: 1px;
             margin: 0 20px;
+            @media (max-width:$mobile) {
+                display: none;
+            }
         }   
         strong {
             font-size: 22px;
             font-family: 'roboto';
+        }
+        .arrows {
+            display: flex;
         }
         .arrow {
             background: #fff;
@@ -330,12 +385,19 @@ p {
         display: flex;
         padding: 20px;
         margin: 0 10px;
+        @media (max-width:$mobile) {
+            height: 675px;
+            flex-direction: column;
+        }
         .description {
             margin-left: 35px;
         }
         .index-img {
             img {
                 width: 200px;
+                @media (max-width:$mobile) {
+                    width: 100%;
+                }
             }
         }
         .side-imgs {
@@ -349,7 +411,9 @@ p {
                     width: 100px;
                 }
             }
-
+            @media (max-width:$mobile) {
+                display: none;
+            }
         }
         .tittle {
             h4 {

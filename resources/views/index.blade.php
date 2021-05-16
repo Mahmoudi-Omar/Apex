@@ -19,18 +19,21 @@
             <div class="top-tittle">
                 <strong>Popular Categories</strong>
                 <div class="line"></div>
-                <div id="prev-slider-cat" class="arrow left-arrow">
-                    <i class="fas fa-chevron-left"></i>
+                <div class="arrows">
+                    <div id="prev-slider-cat" class="arrow left-arrow">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div id="next-slider-cat" class="arrow right-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
                 </div>
-                <div id="next-slider-cat" class="arrow right-arrow">
-                    <i class="fas fa-chevron-right"></i>
-                </div>
+             
             </div>
             <div class="categories-slider">
                 @foreach ($popular_categories as $popular_category)
                     <div class="category">
                         <div class="category-content">
-                            <img src="{{ asset('assets/images/18-600x600.jpg') }}" />
+                            <img src="{{ asset('assets/images/'.$popular_category->cat_img) }}" />
                             <h5>{{ $popular_category->cat_name }}</h5>
                             <p>{{ $popular_category->Product->count() }} Products</p>
                         </div>
@@ -104,10 +107,10 @@
 
         <div class="two-imgs">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 col-xs-12">
                     <img src="{{ asset('assets/images/item-3.png') }}" />
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 col-xs-12">
                     <img src="{{ asset('assets/images/item-4.png') }}" />
                 </div>
             </div>    
@@ -116,48 +119,53 @@
             <div class="top-tittle">
                 <h4>New Products</h4>
                 <div class="line"></div>
+                <select class="selectpicker new-product-cat-list-responsive">
                 @foreach ($categories_filter_new_product as $item)
                     <div class="new-product-cat-list filter_new_product" data-catId="{{ $item->id }}">
                         <span> {{ $item->cat_name }} <span>
                     </div>
+                    <option value="{{ $item->id }}">{{ $item->cat_name }}</option>
                 @endforeach
+                </select>
             </div>
             <div class="card-wrapper" id="append_new_product">
                 <div id="loader" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-                @foreach ($new_products as $new_product)
-                    <div class="product-card">
-                        <div class="img-card">
-                            <img src="{{ asset('assets/images/'.$new_product->imageProduct[0]->img_src) }}" />
-                            <div class="view-hover">
-                                <i class="fas fa-eye"></i>
+                {{-- <div class="new-product-slider"> --}}
+                    @foreach ($new_products as $new_product)
+                        <div class="product-card">
+                            <div class="img-card">
+                                <img src="{{ asset('assets/images/'.$new_product->imageProduct[0]->img_src) }}" />
+                                <div class="view-hover">
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                            </div>
+                            <div class="product-tittle">
+                                <h4>{{ $new_product->product_name }}</h4>
+                            </div>
+                            <div class="product-avis">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="product-price">
+                                <h4>{{ $new_product->price }} DT</h4>
+                                @if ($new_product->old_price)
+                                    <h4 class="old_price">{{ $new_product->old_price }} DT</h4>
+                                @endif
+                            </div>
+                            <div class="add-hover">
+                                <div class="add-to-card">
+                                    <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
+                                    <span>Add To Cart</span>
+                                </div>
+                                <div class="heart-hover">
+                                    <i class="far fa-heart"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="product-tittle">
-                            <h4>{{ $new_product->product_name }}</h4>
-                        </div>
-                        <div class="product-avis">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="product-price">
-                            <h4>{{ $new_product->price }} DT</h4>
-                            @if ($new_product->old_price)
-                                <h4 class="old_price">{{ $new_product->old_price }} DT</h4>
-                            @endif
-                        </div>
-                        <div class="add-hover">
-                            <div class="add-to-card">
-                                <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
-                                <span>Add To Cart</span>
-                            </div>
-                            <div class="heart-hover">
-                                <i class="far fa-heart"></i>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                {{-- </div> --}}
             </div>
         </div>
 
@@ -179,11 +187,13 @@
             <div class="top-tittle">
                 <strong>Deal Of The Days</strong>
                 <div class="line"></div>
-                <div id="prev-slider-deal" class="arrow left-arrow">
-                    <i class="fas fa-chevron-left"></i>
-                </div>
-                <div id="next-slider-deal" class="arrow right-arrow">
-                    <i class="fas fa-chevron-right"></i>
+                <div class="arrows">
+                    <div id="prev-slider-deal" class="arrow left-arrow">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div id="next-slider-deal" class="arrow right-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
                 </div>
             </div>
             <div class="deal-card-wrapper">
@@ -535,6 +545,31 @@
             slidesToScroll: 1,
             nextArrow : document.getElementById('next-slider-cat'),
             prevArrow : document.getElementById('prev-slider-cat'),
+            responsive: [
+                {
+                    breakpoint:768,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        infinite: true
+                    }
+                }
+            ]
+        });
+        $('.new-product-slider').slick({
+            infinite: true,
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            responsive: [
+                {
+                    breakpoint:768,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        infinite: true
+                    }
+                }
+            ]
         });
         $('.slider-deal').slick({
             infinite: true,
@@ -542,10 +577,44 @@
             slidesToScroll: 1,
             nextArrow : document.getElementById('next-slider-deal'),
             prevArrow : document.getElementById('prev-slider-deal'),
+            responsive: [
+                {
+                    breakpoint:768,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        infinite: true
+                    }
+                }
+            ]
         })
 
         $(document).ready(function() {
             $("#loader").hide();
+            $(".new-product-cat-list-responsive").change(function(){
+                $catID = $(this).val()
+                $.ajax({
+                    url:"{{ route('show_new_product_index') }}",
+                    type:"POST",
+                    dataType:"json",
+                    data:{
+                        "_token": "{{ csrf_token() }}",
+                        id_cat:$catID
+                    },
+                    beforeSend:function() {
+                        $('#loader').show() 
+                    },
+                    success:function(data) {
+                        $("#loader").hide();
+                        $('#append_new_product').empty()
+                        $('#append_new_product').append(data.output)
+
+                    },
+                    error:function(error) {
+                        console.log(error)
+                    }
+                })
+            })
             $('.filter_new_product').click(function(){
                $catID=($(this).attr('data-catId'))
                 $.ajax({
@@ -600,6 +669,7 @@
         })
         
     </script>
+    <script src="{{ asset('assets/js/toggleCat.js') }}"></script>
 
 </body>
 </html>

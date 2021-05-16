@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 categoires-responsive">
         <div class="categoires">
             <div class="cat-title">
                 <i class="fas fa-bars"></i>
@@ -21,7 +21,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-9 col-xs-12">
         <div class="custom-navbar">
             <span class="fas fa-home"></span>
             <h4> <a style="color:#5ea606" href="{{ route('index') }}"> HOME </a> </h4>
@@ -31,7 +31,7 @@
         </div>
         <div class="slider-content">
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-9 col-xs-12">
                     <div class="slider">
                         <div class="slider-img">
                             <img src="{{ asset('assets/images/1603552064.jpg') }}" />
