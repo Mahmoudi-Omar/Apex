@@ -26,6 +26,7 @@ Route::post('filter_categories',[App\Http\Controllers\ShopController::class,'fil
 Route::post('getItem',[App\Http\Controllers\MyCart::class,'getItem'])->name('getItem');
 Route::get('my_cart',[App\Http\Controllers\MyCart::class,'index'])->name('my_cart');
 Route::post('storeInCart',[App\Http\Controllers\MyCart::class,'storeInCart'])->name('storeInCart');
+Route::post('storeInCartOneProduct',[App\Http\Controllers\MyCart::class,'storeInCartOneProduct'])->name('storeInCartOneProduct');
 Route::post('DeleteInCart',[App\Http\Controllers\MyCart::class,'DeleteInCart'])->name('DeleteInCart');
 Route::post('UpdateInCart',[App\Http\Controllers\MyCart::class,'UpdateInCart'])->name('UpdateInCart');
 Route::get('checkout',[App\Http\Controllers\checkoutController::class,'index'])->name('checkout');
@@ -48,6 +49,9 @@ Route::prefix('admin')->middleware('admin')->name('admin.')->group(function(){
     Route::post('ajax_product_sub_cat',[App\Http\Controllers\Admin\EditController::class,'ajax_product_sub_cat'])->name('ajax_product_sub_cat');
     Route::get('order_list',[App\Http\Controllers\Admin\orderlistController::class,'index'])->name('orderlist');
     Route::get('delete',[App\Http\Controllers\Admin\DeleteController::class,'index'])->name('delete');
+    Route::post('delete_categories',[App\Http\Controllers\Admin\DeleteController::class,'delete_categories'])->name('delete_categories');
+    Route::post('delete_products',[App\Http\Controllers\Admin\DeleteController::class,'delete_products'])->name('delete_products');
+    Route::post('delete_sub_categories',[App\Http\Controllers\Admin\DeleteController::class,'delete_sub_categories'])->name('delete_sub_categories');
 });
 
 

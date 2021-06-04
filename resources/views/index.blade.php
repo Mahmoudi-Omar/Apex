@@ -27,17 +27,18 @@
                         <i class="fas fa-chevron-right"></i>
                     </div>
                 </div>
-             
             </div>
             <div class="categories-slider">
                 @foreach ($popular_categories as $popular_category)
-                    <div class="category">
-                        <div class="category-content">
-                            <img src="{{ asset('assets/images/'.$popular_category->cat_img) }}" />
-                            <h5>{{ $popular_category->cat_name }}</h5>
-                            <p>{{ $popular_category->Product->count() }} Products</p>
+                    <a href="{{ route('shop','category='.$popular_category->id) }}" >
+                        <div class="category">
+                            <div class="category-content">
+                                <img src="{{ asset('assets/images/'.$popular_category->cat_img) }}" />
+                                <h5>{{ $popular_category->cat_name }}</h5>
+                                <p>{{ $popular_category->Product->count() }} Products</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 @endforeach              
                 {{-- <div class="category">
                     <div class="category-content">
@@ -120,27 +121,31 @@
                 <h4>New Products</h4>
                 <div class="line"></div>
                 <select class="selectpicker new-product-cat-list-responsive">
+                    @foreach ($categories_filter_new_product as $item)
+                        <option value="{{ $item->id }}">{{ $item->cat_name }}</option>
+                    @endforeach
+                </select>
                 @foreach ($categories_filter_new_product as $item)
                     <div class="new-product-cat-list filter_new_product" data-catId="{{ $item->id }}">
                         <span> {{ $item->cat_name }} <span>
                     </div>
-                    <option value="{{ $item->id }}">{{ $item->cat_name }}</option>
                 @endforeach
-                </select>
             </div>
             <div class="card-wrapper" id="append_new_product">
                 <div id="loader" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                 {{-- <div class="new-product-slider"> --}}
                     @foreach ($new_products as $new_product)
                         <div class="product-card">
-                            <div class="img-card">
-                                <img src="{{ asset('assets/images/'.$new_product->imageProduct[0]->img_src) }}" />
-                                <div class="view-hover">
-                                    <i class="fas fa-eye"></i>
+                            <a href="{{ route('product_details',$new_product->id) }}">
+                                <div class="img-card">
+                                    <img src="{{ asset('assets/images/'.$new_product->imageProduct[0]->img_src) }}" />
+                                    <div class="view-hover">
+                                        <i class="fas fa-eye"></i>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                             <div class="product-tittle">
-                                <h4>{{ $new_product->product_name }}</h4>
+                                <a href="{{ route('product_details',$new_product->id) }}"> <h4>{{ $new_product->product_name }}</h4></a>
                             </div>
                             <div class="product-avis">
                                 <i class="fas fa-star"></i>
@@ -394,24 +399,39 @@
             <div class="top-tittle">
                 <h4>Feature Products</h4>
                 <div class="line"></div>
-                @foreach ($feature_categories_filter as $item)
-                    <div class="new-product-cat-list feature_cat" data-id="{{ $item->id }}">
-                        <span> {{ $item->cat_name }} <span>
+                <select class="selectpicker feature_product_filter_responsive">
+                    @foreach ($feature_categories_filter as $item)
+                        <div class="new-product-cat-list feature_cat" data-id="{{ $item->id }}">
+                            <span> {{ $item->cat_name }} <span>
+                        </div>
+                        <option value="{{ $item->id }}">{{ $item->cat_name }} </option>
+                    @endforeach
+                </select>
+                <div class="arrows">
+                    <div id="prev-slider-deal" class="arrow left-arrow">
+                        <i class="fas fa-chevron-left"></i>
                     </div>
-                @endforeach
+                    <div id="next-slider-deal" class="arrow right-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
             </div>
             <div class="card-wrapper" id="append_feature_product">
                 <div id="loader_feature" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                 @foreach ($feature_products as $feature_product)
                     <div class="product-card">
-                        <div class="img-card">
-                            <img src="{{ asset('assets/images/'.$feature_product->imageProduct[0]->img_src) }}" />
-                            <div class="view-hover">
-                                <i class="fas fa-eye"></i>
+                        <a href="{{ route('product_details',$feature_product->id) }}"> 
+                            <div class="img-card">
+                                <img src="{{ asset('assets/images/'.$feature_product->imageProduct[0]->img_src) }}" />
+                                <div class="view-hover">
+                                    <i class="fas fa-eye"></i>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                         <div class="product-tittle">
-                            <h4>{{ $feature_product->product_name }}</h4>
+                            <a href="{{ route('product_details',$feature_product->id) }}"> 
+                                <h4>{{ $feature_product->product_name }}</h4>
+                            </a>
                         </div>
                         <div class="product-avis">
                             <i class="fas fa-star"></i>
@@ -440,83 +460,8 @@
 
         </div> <!-- end of feature-product -->
 
-        <div class="newslater">
-            <div class="col-4">
-                <h4>Sign Up For Newsletters</h4>
-                <p>Be the First to Know. Sign up for newsletter today</p>
-            </div>
-            <div class="col-4">
-                <div class="content-subs">
-                    <input type="text" class="form-control" placeholder="Enter your email adresse here..."/>
-                    <span>Subscribe !</span>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="newslater-icon">
-                    <div class="twitter">
-                        <i class="fab fa-twitter-square"></i>
-                    </div>
-                    <div class="google-plus">
-                        <i class="fab fa-google-plus-g"></i>
-                    </div>
-                    <div class="fcb">
-                        <i class="fab fa-facebook-f"></i>
-                    </div>
-                    <div class="youtube">
-                        <i class="fab fa-youtube"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <footer>
-            <div class="footer-content">
-                <div class="row">
-                    <div class="col-3">
-                        <div class="first-content">
-                            <div class="logo">
-                                <img src="{{ asset('assets/images/logo.png') }}" />
-                                <div class="slogan">
-                                    <h4>Apex Medical</h4>
-                                    <p>PARAMEDICAL STORE</p>
-                                </div>
-                            </div>
-                            <p class="slogan-desc">We are a team of designers and developers that create high quality Magento, Prestashop, Opencart.</p>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="information">
-                            <h4>Information</h4>
-                            <ul>
-                                <li>About Us</li>
-                                <li>Delivery Information</li>
-                                <li>Privacy Policy</li>
-                                <li>Terms & Conditions</li>
-                                <li>Contact Us</li>
-                                <li>Site Map</li>
-                                <li>Returns</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="Contact-Us">
-                            <h4>Contact Us</h4>
-                            <span class="title-contact">Address: <span>4710-4890 Breckinridge St,Fayetteville, NC 28311</span></span><br></br>
-                            <span class="title-contact">Email: <span>support@plazatheme.com</span></span><br>
-                            <span class="title-contact">Call us: <span>1-1001-234-5678</span></span>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="Twitter-feed">
-                            <h4>Our Twitter Feed</h4>
-                            <div class="twitter-box">
-                                <p>Check out "Alice - Multipurpose Responsive #Magento #Theme" on #Envato by @Plazathemes #Themeforest https://t.co/DNdhAwzm88</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        @include('includes.newslatter')
+        @include('includes.footer')
 
     </div> <!-- end of page wrapper -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -641,6 +586,30 @@
                
             })
             $("#loader_feature").hide()
+            $('.feature_product_filter_responsive').change(function(){
+                $cat_id=$(this).val()
+                $.ajax({
+                    url:"{{ route('show_feature_product_ajax') }}",
+                    type:"POST",
+                    dataType:"json",
+                    data : {
+                        "_token" : "{{ csrf_token() }}",
+                        id_cat:$cat_id
+                    },
+                    beforeSend:function() {
+                        $("#loader_feature").show()
+                    }
+                    ,
+                    success : function(data) {
+                        $("#loader_feature").hide()
+                        $("#append_feature_product").empty()
+                        $("#append_feature_product").append(data.output)
+                    },
+                    error:function(error) {
+                        console.log(error)
+                    }
+                })
+            })
             $('.feature_cat').click(function(){
                $cat_id=($(this).attr('data-id'))
                 $.ajax({

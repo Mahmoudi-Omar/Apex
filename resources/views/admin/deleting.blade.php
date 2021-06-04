@@ -48,28 +48,22 @@
             <div class="add-categories">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                      <h4 class="card-title">Add Categories</h4>
-                      <p class="card-category">Add some Categories</p>
+                      <h4 class="card-title">Delete Categories</h4>
+                      <p class="card-category">Delete some Categories</p>
                     </div>
                     <div class="card-body">
-                      <form action="{{ route('admin.insertion.store') }}" method="POST" enctype="multipart/form-data">
+                      <form action="{{ route('admin.delete_categories') }}" method="post">
                         @csrf
-                        <div class="row">
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label class="bmd-label-floating">Category Name</label>
-                                <input type="text" name="cat_name" class="form-control" />
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                {{-- <label class="bmd-label-floating">Category Image</label> --}}
-                                <input type="file" name="cat_img" class="form-control" />
-                              </div>
-                            </div>
-                          </div>
-                        <button type="submit" class="btn btn-primary">Add Categories</button>
-                        {{-- <div class="clearfix"></div> --}}
+                        <div class="col-md-6">
+                          <select name="categories_id" class="selectpicker" data-live-search="true">
+                            @foreach ($categories as $category)
+                              <option value="{{ $category->id }}" data-tokens="{{ $category->cat_name }}">{{ $category->cat_name }}</option>  
+                            @endforeach
+                          </select>
+                        </div>
+                        <div class="col-md-6">
+                          <button type="submit" class="btn btn-primary">Delete</button>
+                        </div>
                       </form>
                     </div>
                   </div>
@@ -78,107 +72,59 @@
             <div class="add-sub-categories">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                      <h4 class="card-title">Add sub-categories</h4>
-                      <p class="card-category">Add sub-categories</p>
+                      <h4 class="card-title">Delete Product</h4>
+                      <p class="card-category">Delete Product</p>
                     </div>
                     <div class="card-body">
-                      <form action="{{ route('admin.subcatinsert.store') }}" method="post">
+                      <form action="{{ route('admin.delete_products') }}" method="post">
                         @csrf
                         <div style="align-items: center;" class="row">
                             <div class="col-md-6">
-                              <div class="form-group">
-                                <label class="bmd-label-floating">sub-categories</label>
-                                <input type="text" name="sub_cat_name" class="form-control" />
-                              </div>
+                              <select name="product_id" class="selectpicker" data-live-search="true">
+                                @foreach ($products as $product)
+                                  <option value="{{ $product->id }}" data-tokens="{{ $product->product_name }}">{{ $product->product_name }}</option>
+                                @endforeach
+                              </select>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <select name="cat_id" class="selectpicker sub-cat-form" data-live-search="true">
-                                        @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}" data-tokens="{{ $category->cat_name }}">{{ $category->cat_name }}</option>
-                                        @endforeach
-                                    </select>                                      
-                                </div>
+                              <button type="submit" class="btn btn-primary">Delete Product</button>
                             </div>
                           </div>
-                        <button type="submit" class="btn btn-primary">Add sub-categories</button>
                       </form>
                     </div>
                   </div>
             </div> 
-            {{--END OF ADD SUB-CATEGORY --}}
-            <div class="add-products">
-                <div class="card">
-                    <div class="card-header card-header-primary">
-                      <h4 class="card-title">Add Products</h4>
-                      <p class="card-category">Add Products</p>
-                    </div>
-                    <div class="card-body">
-                      <form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div style="align-items: center;" class="row">
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <label class="bmd-label-floating">Product Name</label>
-                                <input type="text" name="product_name" class="form-control">
-                              </div>
-                            </div>
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <label class="bmd-label-floating">Product Description</label>
-                                <textarea name="product_description" class="form-control" cols="30" rows="5"></textarea>
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <select id="cat_product" name="cat_id" class="selectpicker sub-cat-form" data-live-search="true">
-                                        @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}" data-tokens="{{ $category->cat_name }}">{{ $category->cat_name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                  <select class="selectpicker sub-cat-form" id="append_select_sub_cat" name="sub_cat_id">
-                                    
-                                  </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6 offset-md-3">
-                              <div class="form-group">
-                                  <select name="product_status" class="selectpicker">
-                                      <option value="In Stock">In Stock</option> 
-                                      <option value="Hors Stock">Hors Stock</option> 
-                                  </select>
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label class="bmd-label-floating">Product Price</label>
-                                <input style="width:71% !important" type="text" class="form-control" name="product_price" />
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label class="bmd-label-floating">old Price</label>
-                                <input style="width:71% !important" type="text" class="form-control" name="old_price" />
-                              </div>
-                            </div>
-                            <div class="col-md-12">
-                              {{-- <div class="form-group"> --}}
-                                <label class="bmd-label-floating">Product Images</label>
-                                <input type="file" name="imgs_product[]" multiple="multiple" />
-                              {{-- </div> --}}
-                            </div>
+            {{--END OF DELETE PRODUCT --}}
+            <div class="add-sub-categories">
+              <div class="card">
+                  <div class="card-header card-header-primary">
+                    <h4 class="card-title">Delete sous-categories</h4>
+                    <p class="card-category">Delete sous-categories</p>
+                  </div>
+                  <div class="card-body">
+                    <form action="{{ route('admin.delete_sub_categories') }}" method="post">
+                      @csrf
+                      <div style="align-items: center;" class="row">
+                          <div class="col-md-6">
+                            <select name="cat_id" class="selectpicker" id="cat_product" data-live-search="true">
+                                <option hidden></option>
+                              @foreach ($categories as $category)
+                                <option value="{{ $category->id }}" data-tokens="{{ $category->cat_name }}">{{ $category->cat_name }}</option>
+                              @endforeach
+                            </select>
+                          </div>
+                          <div class="col-md-6">
+                            <select name="sub_cat_id" class="selectpicker" id="append_delete_sub_cat"></select>
+                          </div>
+                          <div class="col-md-6">
+                            <button type="submit" class="btn btn-primary">Delete Sub-Categories</button>
+                          </div>
                         </div>
-                        <button type="submit" class="btn btn-primary pull-right">Add Product</button>
-                        <div class="clearfix"></div>
-                      </form>
-                    </div>
+                    </form>
                   </div>
-            </div> 
-            {{--END OF ADD PRODUCTS --}}
+                </div>
+          </div> 
+
         </div>
       </div>
     </div>
@@ -428,7 +374,7 @@
           },
           success:function(data) {
               console.log(data.output);
-              $('#append_select_sub_cat').html(data.output).selectpicker('refresh');
+              $('#append_delete_sub_cat').html(data.output).selectpicker('refresh');
           },
           error:function(error) {
               console.log(error);

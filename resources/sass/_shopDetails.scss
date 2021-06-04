@@ -148,3 +148,164 @@
         }
     }
 }
+
+.slider-shop {
+    h2 {
+        margin: 0;
+        font-family: 'roboto';
+        font-weight: 500;
+        font-size: 18px;
+        transform: translateY(30px);
+    }
+
+    .latest-product-slider {
+        margin: 30px 0px;
+        .product-card {
+            position: relative;
+            margin: 30px 0px;
+            &:hover {
+                .add-hover {
+                    bottom: -2%;
+                    opacity: 1;
+                }
+            }
+            .img-card {
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                position: relative;
+                cursor: pointer;
+                transition: all .3s;
+                img {
+                    width: 100%;
+                }
+                &:after {
+                    content: "";
+                    position: absolute;
+                    /* width: 100%; */
+                    top: 0;
+                    bottom: 0;
+                    right: 0;
+                    left: 0;
+                    /* height: 100%; */
+                    z-index: 1;
+                    opacity: 0;
+                    background-color: #c7c7c7;
+                    transition: all .3s;
+
+                }
+                &:hover {
+                    &:after {
+                        opacity: .4;   
+                    }
+                    .view-hover {
+                        transform: scale(1);
+                    }
+                }
+                .view-hover {
+                    background: #fff;
+                    border-radius: 5px;
+                    padding: 5px;
+                    position: absolute;
+                    top: 45%;
+                    left: 44%;
+                    // transform: translate(-50%, -50%) !important;
+                    width: 37px;
+                    text-align: center;
+                    z-index: 10;
+                    transform: scale(0);
+                    transition: all .3s;
+
+                }
+            }
+            .product-tittle {
+                margin-top: 10px;
+                h4 {
+                    font-size: 100%;
+                    font-weight: 700;
+                    transition: all .3s;
+                    cursor: pointer;
+                    &:hover {
+                        color: $green;
+                    }
+                }
+            }
+            .product-avis {
+                i {
+                    color:#ffc000;
+                }
+            }
+            .product-price {
+                margin-top: 10px;
+                display: flex;
+                h4 {
+                    font-weight: 700;
+                    font-size: 16px;
+                    // color: $green;
+                }
+                .old_price {
+                    margin-left: 15px;
+                    color: #999;
+                    font-weight: 400;
+                    text-decoration: line-through;
+                    font-family: 'roboto';
+                }
+            }
+            .add-hover {
+                display: flex;
+                align-items: center;
+                position: absolute;
+                bottom:10%;
+                opacity: 0;
+                transition: all .3s;
+                .add-to-card {
+                    background-color: #5ea606;
+                    color: #fff;
+                    padding: 7px 3px;
+                    width: 100%;
+                    border-radius: 3px;
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
+                    img {
+                        width: 25px;
+                        margin: 0 10px;
+                    }
+                }
+                    span {
+                        font-size: 15px;
+                        font-weight: 400;
+                    }
+                }
+                .heart-hover {
+                    background: #fff;
+                    border-radius: 5px;
+                    border: 1px solid #ddd;
+                    width: 60px;
+                    height: 40px;
+                    margin-left: 17px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    transition: all .3s;
+                    i {
+                        font-size: 18px;
+                    }
+                    &:hover {
+                        background-color: $green;
+                    i {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.line {
+    width: 50%;
+    background-color: #dedede;
+    height: 1px;
+    margin: 0px auto 60px;
+}

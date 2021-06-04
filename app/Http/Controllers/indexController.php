@@ -34,12 +34,14 @@ class indexController extends Controller
             foreach ($new_products as $new_product) {
                 $output.='
                 <div class="product-card">
-                    <div class="img-card">
-                        <img src="'.asset('assets/images/'.$new_product->imageProduct[0]->img_src).'" />
-                        <div class="view-hover">
-                            <i class="fas fa-eye"></i>
+                    <a href="route(product_details,'.$new_product->id.')">
+                        <div class="img-card">
+                            <img src="'.asset('assets/images/'.$new_product->imageProduct[0]->img_src).'" />
+                            <div class="view-hover">
+                                <i class="fas fa-eye"></i>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                     <div class="product-tittle">
                         <h4>'.$new_product->product_name.'</h4>
                     </div>

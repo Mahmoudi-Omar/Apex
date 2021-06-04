@@ -25,6 +25,9 @@
     }
     .categories {
         padding: 15px;
+        // @media (max-width:$mobile) {
+        //     display: none;
+        // }
     }
     .categories-content {
         border-bottom: 1px solid #ddd;
@@ -221,6 +224,9 @@
     .top-filter {
         display: flex;
         justify-content: space-between;
+        @media (max-width:$mobile) {
+            margin-top: 20px;
+        }
         .view-as {
             display: flex;
             align-items: center;

@@ -17,8 +17,49 @@
         @include('includes.header')
         @include('includes.navbar')
 
+        <div class="slider-shop">
+            <h2>Same Categories</h2>
+            <div class="latest-product-slider">
+                @foreach ($suggest_products as $item)
+                    <div class="product-card">
+                        <div class="img-card">
+                            <img src="{{ asset('assets/images/'.$item->imageProduct[0]->img_src) }}" />
+                            <div class="view-hover">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                        </div>
+                        <div class="product-tittle">
+                            <a href="{{ route('product_details',$item->id) }}"><h4>{{ $item->product_name }}</h4></a>
+                        </div>
+                        <div class="product-avis">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <h4> {{ $item->price }}</h4>
+                            @if ($item->old_price)
+                                <h4 class="old_price">{{ $item->old_price }} DT</h4>
+                            @endif
+                        </div>
+                        <div class="add-hover">
+                                <div class="add-to-card"  onclick="addtolocalstorageSuggest({{ $item->id }},'{{ $item->imageProduct[0]->img_src }}')">
+                                    <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
+                                    <span>Add To Cart</span>
+                                </div>
+                       
+                            <div class="heart-hover">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+        <div class="line"></div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 offset-md-2">
                 <div class="img">
                     <div class="slider-for">
                         <img src="{{ asset('assets/images/'.$product->imageProduct[0]->img_src) }}" />
@@ -67,7 +108,7 @@
                             <span>Qty</span>
                             <input type="number" value="1" min="1" class="form-control qty-input" />
                         </div>
-                        <div class="add-to-card">
+                        <div class="add-to-card" onclick="addtolocalstorage({{ $product->id }},'{{ $product->imageProduct[0]->img_src }}')">
                             <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
                             <span>Add To Cart</span>
                         </div>
@@ -79,6 +120,8 @@
             </div>
         </div>
   
+        @include('includes.newslatter')
+        @include('includes.footer')
 
     </div>
 
@@ -87,6 +130,70 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.11/dist/js/bootstrap-select.min.js"></script>
 <script src="{{ mix('js/app.js') }}"></script>
 <script src="{{ asset('assets/js/toggleCat.js') }}"></script>
+    <script>
 
+        function addtolocalstorage(id,image) {
+            $(document).ready(function() {
+                $.ajax({
+                    url:" {{ route('storeInCartOneProduct') }} ",
+                    type:"post",
+                    dataType : "json",
+                    data : {
+                        'product_id' : id,
+                        'product_image' : image,
+                        'qty' : $('.qty-input').val(),
+                        '_token' : "{{ csrf_token() }}",
+                    },
+                    success : function (data) {
+                        console.log(data)
+                    },
+                    error : function(error) {
+                        console.log(error)
+                    }
+                })
+            })
+        }
+
+        function addtolocalstorageSuggest(id,image) {
+            $(document).ready(function() {
+                $.ajax({
+                    url:" {{ route('storeInCart') }} ",
+                    type:"post",
+                    dataType : "json",
+                    data : {
+                        'product_id' : id,
+                        'product_image' : image,
+                        '_token' : "{{ csrf_token() }}",
+                    },
+                    success : function (data) {
+                        console.log(data)
+                    },
+                    error : function(error) {
+                        console.log(error)
+                    }
+                })
+            })
+        }
+
+        $(document).ready(function() {
+            $('.latest-product-slider').slick({
+                autoplay: true,
+                autoplaySpeed: 2000,
+                slidesToShow: 6,
+                slidesToScroll: 1,
+                responsive: [
+                    {
+                        breakpoint:768,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1,
+                            infinite: true
+                        }
+                    }
+                ]
+            });
+        })
+
+    </script>
 </body>
 </html>

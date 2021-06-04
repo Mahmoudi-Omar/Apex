@@ -145,11 +145,19 @@
                                   </select>
                                 </div>
                             </div>
-                            <div class="col-md-6 offset-md-3">
+                            <div class="col-md-6">
                               <div class="form-group">
                                   <select name="product_status" class="selectpicker">
                                       <option value="In Stock">In Stock</option> 
                                       <option value="Hors Stock">Hors Stock</option> 
+                                  </select>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                  <select name="product_offers" class="selectpicker">
+                                      <option value="Offer">Offer</option> 
+                                      <option value="Not_Offer">Not_Offer</option> 
                                   </select>
                               </div>
                             </div>

@@ -7,12 +7,34 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
+    @media (max-width:$mobile) {
+        height: 100%;
+        justify-content: center;
+        flex-direction: column;
+        padding: 20px 0px;
+    }
+    h4 {
+        @media (max-width:$mobile) {
+            text-align: center;
+        }
+    }
+    p {
+        @media (max-width:$mobile) {
+            text-align: center;
+        }
+    }
     .content-subs {
         position: relative;
+        @media (max-width:$mobile) {
+            margin: 20px 0;
+        }
         input {
             display: inline-block !important;
             width: 270px !important;
             height: 50px;
+            @media (max-width:$mobile) {
+                width: 90% !important;
+            }
         }
         span {
             background: #5ea606;
@@ -26,11 +48,18 @@
             border-bottom-right-radius: 5px;
             color: #fff;
             margin-right: 5px;
+            @media (max-width:$mobile) {
+                right: 0%;
+            }
         }
     }
     .newslater-icon {
         display: flex;
         float: right;
+        @media (max-width:$mobile) {
+            float: none;
+            justify-content: center;
+        }
         div {
             background: #fff;
             border-radius: 5px;

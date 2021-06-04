@@ -22,6 +22,13 @@ class MyCart extends Controller
         // Cart::destroy();
     }
 
+    public function storeInCartOneProduct(Request $request) {
+        $product = Product::find($request->product_id);
+        // Cart::add($request->product_id,$product->product_name,1,$product->price);
+        Cart::add(['id' => $request->product_id, 'name' => $product->product_name, 'qty' => $request->qty, 'price' => $product->price, 'options' => ['image' => $request->product_image]]);
+        // Cart::destroy();
+    }
+
     public function DeleteInCart(Request $request) {
         Cart::remove($request->rowId);
     }

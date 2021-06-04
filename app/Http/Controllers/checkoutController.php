@@ -21,10 +21,12 @@ class checkoutController extends Controller
 
     public function sendOrder(Request $request) {
         $request->validate([
-            'full_name'           => 'required|max:255',
+            'full_name'            => 'required|max:255',
             'adresse'              => 'required|max:255',
             'phone'                => 'required|max:255'
         ]);
+
+
 
         $last_id=Customer::create([
             'full_name'    => $request->full_name,
