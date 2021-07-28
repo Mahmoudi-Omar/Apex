@@ -29,72 +29,6 @@
   <div class="wrapper ">
     @include('admin.includes.sidebar')
     <div class="main-panel">
-      <!-- Navbar -->
-      {{-- <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:;">Table List</a>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end">
-            <form class="navbar-form">
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                  <i class="material-icons">search</i>
-                  <div class="ripple-container"></div>
-                </button>
-              </div>
-            </form>
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="javascript:;">
-                  <i class="material-icons">dashboard</i>
-                  <p class="d-lg-none d-md-block">
-                    Stats
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="material-icons">notifications</i>
-                  <span class="notification">5</span>
-                  <p class="d-lg-none d-md-block">
-                    Some Actions
-                  </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Mike John responded to your email</a>
-                  <a class="dropdown-item" href="#">You have 5 new tasks</a>
-                  <a class="dropdown-item" href="#">You're now friend with Andrew</a>
-                  <a class="dropdown-item" href="#">Another Notification</a>
-                  <a class="dropdown-item" href="#">Another One</a>
-                </div>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="material-icons">person</i>
-                  <p class="d-lg-none d-md-block">
-                    Account
-                  </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="#">Profile</a>
-                  <a class="dropdown-item" href="#">Settings</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Log out</a>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav> --}}
-      <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
           <div class="row">
@@ -109,117 +43,65 @@
                     <table class="table">
                       <thead class=" text-primary">
                         <th>
+                          ID
+                        </th>
+                        <th>
                           User Name
                         </th>
                         <th>
-                         product Name
+                          Total Price
                         </th>
                         <th>
-                          Quantity
+                          Phone
                         </th>
                         <th>
-                          price
+                          Adresse
                         </th>
                         <th>
-                          phone
+                          Status
                         </th>
                         <th>
-                          adresse
+                          Action
                         </th>
                       </thead>
                       <tbody>
-                          {{-- {{ $orders }}  --}}
-                          {{-- @foreach ($user->orders as $item)
-                          @foreach ($item->user as $item_user)
-                              <tr>
-                                  <td>
-                                      {{ $item_user->first_name }} {{ $item_user->last_name }}
-                                  </td>
-                                  <td>
-                                      {{ $item->product_name }}
-                                  </td>
-                                  <td>
-                                      {{ $item->pivot->qty }}
-                                  </td>
-                                  <td>
-                                      {{ $item->pivot->price }}
-                                  </td>
-                                  <td>
-                                      {{ $item_user->phone }}
-                                  </td>
-                                  {{-- <td>
-                                      {{ $item_user->adresse }}
-                                  </td> --}}
-                              {{-- </tr>
-                          @endforeach
-                         
-                        
-                      @endforeach  - --}}
-                        @foreach ($customers as $customer)
+                        @foreach ($orders as $order)
                           <tr>
 
                             <td>
-                                {{ $customer->full_name }} 
+                                {{ $order->id }} 
                             </td>
 
                             <td>
-                              @foreach ( $customer->orders as $order)
-                                
-                                <p>{{ $order->product_name }} </p>
-                                <hr>
-                        
-                              @endforeach
+                              {{ $order->customer_name }}
                             </td>
                           
                             <td>
-                            
-                              @foreach ( $customer->orders as $order)
-                                
-                                <p>{{ $order->pivot->qty }} </p>
-                                <hr>
-                      
-                              @endforeach
+                              {{ $order->price }}
                             </td>
                            
                             <td>
-                            
-                              @foreach ( $customer->orders as $order)
-                                
-                                <p>{{ $order->pivot->price }} </p>
-                                <hr>
-                      
-                              @endforeach
+                              {{ $order->phone }}
                             </td>
 
                             <td>
-                              {{ $customer->phone }}
+                              {{ $order->adresse }}
                             </td>
 
                             <td>
-                              {{ $customer->adresse }}
+                              {{ $order->status }}
+                            </td>
+
+                            <td>
+                                <a class="btn btn-warning" href="{{ route('admin.show_orderd_products',$order->id) }}"> Products List </a>
+                                {{-- <a class="btn btn-primary" href="{{ route('admin.show_orderd_products',$order->id) }}"> Deliverd </a> --}}
                             </td>
 
                           </tr>
                         @endforeach
-                        {{-- <tr>
-                          <td>
-                            1
-                          </td>
-                          <td>
-                            Dakota Rice
-                          </td>
-                          <td>
-                            Niger
-                          </td>
-                          <td>
-                            Oud-Turnhout
-                          </td>
-                          <td class="text-primary">
-                            $36,738
-                          </td>
-                        </tr> --}}
                       </tbody>
                     </table>
+                    {{ $orders->links('pagination') }}
                   </div>
                 </div>
               </div>

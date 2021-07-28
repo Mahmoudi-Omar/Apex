@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Apex Medical</title>
+    <meta name="description" content="Vous trouverez chez Apex-Medical un large choix des produits parapharmaceutique au meilleur prix et sélectionnés parmi les plus grands laboratoires parapharmaceutiques*"/>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
@@ -17,7 +18,7 @@
 
         <div class="popular-category">
             <div class="top-tittle">
-                <strong>Popular Categories</strong>
+                <strong>Top Catégories</strong>
                 <div class="line"></div>
                 <div class="arrows">
                     <div id="prev-slider-cat" class="arrow left-arrow">
@@ -106,7 +107,7 @@
             </div>
         </div>
 
-        <div class="two-imgs">
+        {{-- <div class="two-imgs">
             <div class="row">
                 <div class="col-md-6 col-xs-12">
                     <img src="{{ asset('assets/images/item-3.png') }}" />
@@ -115,10 +116,10 @@
                     <img src="{{ asset('assets/images/item-4.png') }}" />
                 </div>
             </div>    
-        </div>
+        </div> --}}
         <div class="new-products">
             <div class="top-tittle">
-                <h4>New Products</h4>
+                <h4>Derniers articles</h4>
                 <div class="line"></div>
                 <select class="selectpicker new-product-cat-list-responsive">
                     @foreach ($categories_filter_new_product as $item)
@@ -160,20 +161,20 @@
                                 @endif
                             </div>
                             <div class="add-hover">
-                                <div class="add-to-card">
+                                <div class="add-to-card" onclick="addtolocalstorage({{ $new_product->id }},'{{ $new_product->imageProduct[0]->img_src }}')">
                                     <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
-                                    <span>Add To Cart</span>
+                                    <span>Ajouter au panier</span>
                                 </div>
-                                <div class="heart-hover">
+                                {{-- <div class="heart-hover">
                                     <i class="far fa-heart"></i>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     @endforeach
                 {{-- </div> --}}
             </div>
         </div>
-
+{{-- 
         <div class="three-img">
             <div class="row">
                 <div class="col-md-4">
@@ -186,11 +187,11 @@
                     <img src="{{ asset('assets/images/item-5.jpg') }}" />
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="deal-of-day">
             <div class="top-tittle">
-                <strong>Deal Of The Days</strong>
+                <strong>Nos Top Promos</strong>
                 <div class="line"></div>
                 <div class="arrows">
                     <div id="prev-slider-deal" class="arrow left-arrow">
@@ -203,7 +204,56 @@
             </div>
             <div class="deal-card-wrapper">
                 <div class="row slider-deal">
-                    <div class="slider-div">
+                    @foreach ($offer_products as $offer_product)
+                        <div class="slider-div">
+                            <div class="deal-card">
+                                <div class="index-img">
+                                    <img src="{{ asset('assets/images/'.$offer_product->imageProduct[0]->img_src) }}" />
+                                </div>
+                                <div class="side-imgs">
+                                    @for ($i = 1; $i < count($offer_product->imageProduct) ; $i++)
+                                        <div class="img">
+                                            <img src="{{ asset('assets/images/'.$offer_product->imageProduct[$i]->img_src) }}" />
+                                        </div>
+                                    @endfor
+                                </div>
+                                <div class="description">
+                                    <div class="tittle">
+                                        <h4> <a href="{{ route('product_details',$offer_product->id) }}">{{ $offer_product->product_name }}</a></h4>
+                                    </div>
+                                    <div class="price">
+                                        <span class="offer_price"> {{ $offer_product->price }} </span>
+                                        @if ($offer_product->old_price)
+                                            <span class="old_price">  {{ $offer_product->old_price }}  </span>
+                                        @endif
+                                    </div>
+                                    <div class="avis">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="description-text">
+                                        <span>
+                                            {{ $offer_product->product_description }}
+                                        </span>
+                                    </div>
+                                    <div class="add-hover">
+                                        <div class="add-to-card" onclick="addtolocalstorage({{ $offer_product->id }},'{{ $offer_product->imageProduct[0]->img_src }}')">
+                                            <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart.svg') }}" />
+                                            <span>Ajouter au panier</span>
+                                        </div>
+                                        {{-- <div class="heart-hover">
+                                            <i class="far fa-heart"></i>
+                                        </div> --}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                    {{-- <div class="slider-div">
                         <div class="deal-card">
                             <div class="index-img">
                                 <img src="{{ asset('assets/images/10-600x600.jpg') }}" />
@@ -241,7 +291,7 @@
                                 <div class="add-hover">
                                     <div class="add-to-card">
                                         <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart.svg') }}" />
-                                        <span>Add To Cart</span>
+                                        <span>Ajouter au panier</span>
                                     </div>
                                     <div class="heart-hover">
                                         <i class="far fa-heart"></i>
@@ -288,7 +338,7 @@
                                 <div class="add-hover">
                                     <div class="add-to-card">
                                         <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart.svg') }}" />
-                                        <span>Add To Cart</span>
+                                        <span>Ajouter au panier</span>
                                     </div>
                                     <div class="heart-hover">
                                         <i class="far fa-heart"></i>
@@ -335,7 +385,7 @@
                                 <div class="add-hover">
                                     <div class="add-to-card">
                                         <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart.svg') }}" />
-                                        <span>Add To Cart</span>
+                                        <span>Ajouter au panier</span>
                                     </div>
                                     <div class="heart-hover">
                                         <i class="far fa-heart"></i>
@@ -343,61 +393,14 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="slider-div">
-                        <div class="deal-card">
-                            <div class="index-img">
-                                <img src="{{ asset('assets/images/10-600x600.jpg') }}" />
-                            </div>
-                            <div class="side-imgs">
-                                <div class="img">
-                                    <img src="{{ asset('assets/images/5-600x600.jpg') }}" />
-                                </div>
-                                <div class="img">
-                                    <img src="{{ asset('assets/images/5-600x600.jpg') }}" />
-                                </div>
-                                <div class="img">
-                                    <img src="{{ asset('assets/images/5-600x600.jpg') }}" />
-                                </div>
-                            </div>
-                            <div class="description">
-                                <div class="tittle">
-                                    <h4>Bestiva Phone Case</h4>
-                                </div>
-                                <div class="price">
-                                    <span> 43.000 DT </span>
-                                </div>
-                                <div class="avis">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <div class="description-text">
-                                    <span>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur fugit aliquid veniam omnis dolores quaerat velit ut nobis, porro sit, a itaque commodi voluptatum fuga.
-                                    </span>
-                                </div>
-                                <div class="add-hover">
-                                    <div class="add-to-card">
-                                        <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart.svg') }}" />
-                                        <span>Add To Cart</span>
-                                    </div>
-                                    <div class="heart-hover">
-                                        <i class="far fa-heart"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             </div>
         </div>
         <div class="feature-product">
             <div class="top-tittle">
-                <h4>Feature Products</h4>
+                <h4>Bons Plans</h4>
                 <div class="line"></div>
                 <select class="selectpicker feature_product_filter_responsive">
                     @foreach ($feature_categories_filter as $item)
@@ -446,13 +449,13 @@
                             @endif
                         </div>
                         <div class="add-hover">
-                            <div class="add-to-card">
+                            <div class="add-to-card" onclick="addtolocalstorage({{ $feature_product->id }},'{{ $feature_product->imageProduct[0]->img_src }}')">
                                 <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
-                                <span>Add To Cart</span>
+                                <span>Ajouter au panier</span>
                             </div>
-                            <div class="heart-hover">
+                            {{-- <div class="heart-hover">
                                 <i class="far fa-heart"></i>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 @endforeach
@@ -468,11 +471,51 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.11/dist/js/bootstrap-select.min.js"></script>
     <script src="{{ mix('js/app.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
 
 
-    
+        function addtolocalstorage(id,image) {
+            $(document).ready(function(){
+                $.ajax({
+                    url:" {{ route('storeInCart') }} ",
+                    type:"post",
+                    dataType : "json",
+                    data : {
+                        'product_id' : id,
+                        'product_image' : image,
+                        '_token' : "{{ csrf_token() }}",
+                    },
+                    success : function (data) {
+                        console.log(data)
+                     
+                    },
+                    error : function(error) {
+                        console.log(error)
+                    },
+                    complete:function() {
+                        // Swal.fire({
+                        //     position: 'top-end',
+                        //     icon: 'success',
+                        //     title: 'Your work has been saved',
+                        //     showConfirmButton: false,
+                        //     timer: 2000
+                        // })
+                        new Noty({
+                            theme:'mint',
+                            text: 'Votre article a été ajouté à votre panier',
+                            timeout : 2000,
+                            animation: {
+                                open: 'noty_effects_open', // Animate.css class names
+                                close: 'noty_effects_close' // Animate.css class names
+                            }
+                        }).show();
+                    }
+                })
+            })
+        }
+
  
 
         if (localStorage.getItem('cards')) {
@@ -639,6 +682,5 @@
         
     </script>
     <script src="{{ asset('assets/js/toggleCat.js') }}"></script>
-
 </body>
 </html>

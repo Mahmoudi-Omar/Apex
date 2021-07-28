@@ -32,11 +32,10 @@ Route::post('UpdateInCart',[App\Http\Controllers\MyCart::class,'UpdateInCart'])-
 Route::get('checkout',[App\Http\Controllers\checkoutController::class,'index'])->name('checkout');
 Route::post('sendOrder',[App\Http\Controllers\checkoutController::class,'sendOrder'])->name('sendOrder');
 Route::get('about-us',[App\Http\Controllers\AboutUs::class,'index'])->name('about-us');
+Route::post('rating',[App\Http\Controllers\Rating::class,'rating'])->name('rating');
 
 Route::prefix('admin')->middleware('admin')->name('admin.')->group(function(){
-    Route::get('/',function(){
-        return view('admin.dashboard');
-    })->name('index');
+    Route::get('/',[App\Http\Controllers\Admin\AdminIndex::class,'dashboard'])->name('index');
     Route::resource('insertion',App\Http\Controllers\Admin\CategoriesController::class);
     Route::resource('subcatinsert',App\Http\Controllers\Admin\SubCatController::class);
     Route::post('ajax_sub_cat',[App\Http\Controllers\Admin\SubCatController::class,'show_sub_cat'])->name('ajax_sub_cat');
@@ -52,6 +51,8 @@ Route::prefix('admin')->middleware('admin')->name('admin.')->group(function(){
     Route::post('delete_categories',[App\Http\Controllers\Admin\DeleteController::class,'delete_categories'])->name('delete_categories');
     Route::post('delete_products',[App\Http\Controllers\Admin\DeleteController::class,'delete_products'])->name('delete_products');
     Route::post('delete_sub_categories',[App\Http\Controllers\Admin\DeleteController::class,'delete_sub_categories'])->name('delete_sub_categories');
+    Route::get('products_order/{id}',[App\Http\Controllers\Admin\orderlistController::class,'show_orderd_products'])->name('show_orderd_products');
+    Route::post('porducts_order_confirmed/{id}',[App\Http\Controllers\Admin\orderlistController::class,'confirm_orderd_products'])->name('porducts_order_confirmed');
 });
 
 

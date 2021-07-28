@@ -15,7 +15,7 @@
     <div class="page-wrapper checkout-page">
         {{-- @include('includes.header') --}}
         {{-- @include('includes.navbar') --}}
-        <h2>SHIPPING ADDRESS</h2>
+        <h2>Informations de livraison</h2>
         <hr>
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -50,9 +50,9 @@
                             </div>
                         </div> --}}
                         <div class="form-group">
-                            <label for="full_name">Full Name</label>
+                            <label for="full_name">Nom et prénom</label>
                             <div class="col-sm-10">
-                                <input type="text" value="{{ old('full_name') }}" name="full_name" class="form-control" id="full_name" placeholder="Full Name..." required />
+                                <input type="text" value="{{ old('full_name') }}" name="full_name" class="form-control" id="full_name" placeholder="Nom et prénom..." required />
                             </div>
                         </div>
                         {{-- <div class="form-group">
@@ -63,9 +63,9 @@
                         </div> --}}
 
                         <div class="form-group">
-                            <label for="Phone">Phone Number</label>
+                            <label for="Phone">Numéro de téléphone</label>
                             <div class="col-sm-10">
-                                <input type="text" name="phone" value="{{ old('phone') }}" class="form-control" id="Phone" placeholder="Phone Number..." required />
+                                <input type="text" name="phone" value="{{ old('phone') }}" class="form-control" id="Phone" placeholder="Numéro de téléphone..." required />
                             </div>
                         </div>
 
@@ -80,9 +80,9 @@
                 </div>
                 <div class="col-md-4">
                     <div class="order_summary">
-                        <h4>Order Summary</h4>
+                        <h4>Récapitulatif de la commande</h4>
                         <hr class="first_hr">
-                        <h4>{{ Cart::content()->count() }} Items in Cart </h4>
+                        <h4>{{ Cart::content()->count() }} Articles dans le panier </h4>
                         <hr class="second_hr">
                         @foreach (Cart::content() as $item)
                             <div class="show_item">
@@ -100,92 +100,18 @@
                         @endforeach
                         <hr class="third_hr">
                         <div class="total">
-                            Total : {{ Cart::subtotal() }} DT
+                            Montant Total : {{ Cart::subtotal() }} DT
                         </div>
                     </div>
                 </div>
                 <div class="btn-checkout-div">
-                    <button type="submit" class="btn btn-green">Checkout</button>
+                    <button type="submit" class="btn btn-green">Vérifier</button>
                 </div>
             </div>
         </form>
 
-        <div class="newslater">
-            <div class="col-4">
-                <h4>Sign Up For Newsletters</h4>
-                <p>Be the First to Know. Sign up for newsletter today</p>
-            </div>
-            <div class="col-4">
-                <div class="content-subs">
-                    <input type="text" class="form-control" placeholder="Enter your email adresse here..."/>
-                    <span>Subscribe !</span>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="newslater-icon">
-                    <div class="twitter">
-                        <i class="fab fa-twitter-square"></i>
-                    </div>
-                    <div class="google-plus">
-                        <i class="fab fa-google-plus-g"></i>
-                    </div>
-                    <div class="fcb">
-                        <i class="fab fa-facebook-f"></i>
-                    </div>
-                    <div class="youtube">
-                        <i class="fab fa-youtube"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <footer>
-            <div class="footer-content">
-                <div class="row">
-                    <div class="col-3">
-                        <div class="first-content">
-                            <div class="logo">
-                                <img src="{{ asset('assets/images/logo.png') }}" />
-                                <div class="slogan">
-                                    <h4>Apex Medical</h4>
-                                    <p>PARAMEDICAL STORE</p>
-                                </div>
-                            </div>
-                            <p class="slogan-desc">We are a team of designers and developers that create high quality Magento, Prestashop, Opencart.</p>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="information">
-                            <h4>Information</h4>
-                            <ul>
-                                <li>About Us</li>
-                                <li>Delivery Information</li>
-                                <li>Privacy Policy</li>
-                                <li>Terms & Conditions</li>
-                                <li>Contact Us</li>
-                                <li>Site Map</li>
-                                <li>Returns</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="Contact-Us">
-                            <h4>Contact Us</h4>
-                            <span class="title-contact">Address: <span>4710-4890 Breckinridge St,Fayetteville, NC 28311</span></span><br></br>
-                            <span class="title-contact">Email: <span>support@plazatheme.com</span></span><br>
-                            <span class="title-contact">Call us: <span>1-1001-234-5678</span></span>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="Twitter-feed">
-                            <h4>Our Twitter Feed</h4>
-                            <div class="twitter-box">
-                                <p>Check out "Alice - Multipurpose Responsive #Magento #Theme" on #Envato by @Plazathemes #Themeforest https://t.co/DNdhAwzm88</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        @include('includes.newslatter')
+        @include('includes.footer')
 
     </div>
 

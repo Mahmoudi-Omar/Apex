@@ -38,12 +38,14 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request->product_offers;
         $product_id = Product::create([
             'product_name'          => $request->product_name,	
             'product_description'   => $request->product_description,
             'status'	            => $request->product_status,
             'price'                 => $request->product_price,
             'old_price'             => $request->old_price,
+            'is_offer'              => $request->product_offers,
             'cat_id'                => $request->cat_id,
             'sub_cat_id'            => $request->sub_cat_id
         ])->id;

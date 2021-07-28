@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About us</title>
+    <title>Qui Sommes Nous</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
@@ -39,82 +39,9 @@
             <h6>4. Multimedia & Infographics</h6>
             <p>A well-built infographic might help visitors remember about you or your business better than any amount of words. So if you think it works better for your brand or business, skip the lengthy description, or add a well-designed graphic that can help your visitors understand your concept. Or maybe you would like to add a cool video about how your business was created, or about your story and let it speak for itself.</p>
         </div>
-        <div class="newslater">
-            <div class="col-4">
-                <h4>Sign Up For Newsletters</h4>
-                <p>Be the First to Know. Sign up for newsletter today</p>
-            </div>
-            <div class="col-4">
-                <div class="content-subs">
-                    <input type="text" class="form-control" placeholder="Enter your email adresse here..."/>
-                    <span>Subscribe !</span>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="newslater-icon">
-                    <div class="twitter">
-                        <i class="fab fa-twitter-square"></i>
-                    </div>
-                    <div class="google-plus">
-                        <i class="fab fa-google-plus-g"></i>
-                    </div>
-                    <div class="fcb">
-                        <i class="fab fa-facebook-f"></i>
-                    </div>
-                    <div class="youtube">
-                        <i class="fab fa-youtube"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <footer>
-            <div class="footer-content">
-                <div class="row">
-                    <div class="col-3">
-                        <div class="first-content">
-                            <div class="logo">
-                                <img src="{{ asset('assets/images/logo.png') }}" />
-                                <div class="slogan">
-                                    <h4>Apex Medical</h4>
-                                    <p>PARAMEDICAL STORE</p>
-                                </div>
-                            </div>
-                            <p class="slogan-desc">We are a team of designers and developers that create high quality Magento, Prestashop, Opencart.</p>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="information">
-                            <h4>Information</h4>
-                            <ul>
-                                <li>About Us</li>
-                                <li>Delivery Information</li>
-                                <li>Privacy Policy</li>
-                                <li>Terms & Conditions</li>
-                                <li>Contact Us</li>
-                                <li>Site Map</li>
-                                <li>Returns</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="Contact-Us">
-                            <h4>Contact Us</h4>
-                            <span class="title-contact">Address: <span>4710-4890 Breckinridge St,Fayetteville, NC 28311</span></span><br></br>
-                            <span class="title-contact">Email: <span>support@plazatheme.com</span></span><br>
-                            <span class="title-contact">Call us: <span>1-1001-234-5678</span></span>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="Twitter-feed">
-                            <h4>Our Twitter Feed</h4>
-                            <div class="twitter-box">
-                                <p>Check out "Alice - Multipurpose Responsive #Magento #Theme" on #Envato by @Plazathemes #Themeforest https://t.co/DNdhAwzm88</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+
+        @include('includes.newslatter')
+        @include('includes.footer')
        
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -126,6 +53,20 @@
     <script src="{{ mix('js/app.js') }}"></script>
 
     <script src="{{ asset('assets/js/toggleCat.js') }}"></script>
+
+    <script>
+
+    $(document).ready(function() {
+        if ($(window).width()<'768') {
+            $('.categories').hide();
+            $('.cat-list').removeClass('collapse')
+        }
+        $('.side-filter').click(function(){
+            $('.categories').slideToggle();
+        })
+    })
+    </script>
+    
 
 </body>
 </html>

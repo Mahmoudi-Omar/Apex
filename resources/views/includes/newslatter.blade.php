@@ -1,12 +1,12 @@
 <div class="newslater">
     <div class="col-md-4 col-xs-12">
-        <h4>Sign Up For Newsletters</h4>
-        <p>Be the First to Know. Sign up for newsletter today</p>
+        <h4>Inscrivez-vous aux newsletters</h4>
+        <p>Inscrivez-vous et recevez notre Newsletter pour rester informé de toutes les promotions.</p>
     </div>
     <div class="col-md-4 col-xs-12">
         <div class="content-subs">
-            <input type="text" class="form-control" placeholder="Enter your email adresse here..."/>
-            <span>Subscribe !</span>
+            <input type="text" class="form-control" placeholder="Entrez votre adresse email ici..."/>
+            <span>S'abonner !</span>
         </div>
     </div>
     <div class="col-md-4 col-xs-12">

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Nos Produits</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
@@ -22,7 +22,7 @@
         @include('includes.navbar')
 
             <div class="slider-shop">
-                <h2>You May Also</h2>
+                <h2>Vous pouvez également</h2>
                 <div class="latest-product-slider">
                     @foreach ($latest_products as $item)
                         <div class="product-card">
@@ -50,7 +50,7 @@
                             <div class="add-hover">
                                     <div class="add-to-card"  onclick="addtolocalstorage()">
                                         <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
-                                        <span>Add To Cart</span>
+                                        <span>Ajouter au panier</span>
                                     </div>
                            
                                 <div class="heart-hover">
@@ -66,7 +66,7 @@
             <div class="col-md-3">
                 <div class="side-filter">
                     <div class="tittle">
-                        <span> FILTER PRODUCTS BY </span>
+                        <span> FILTRER LES PRODUITS </span>
                     </div>
                     <div class="categories">
                         @foreach ($categories as $category)
@@ -89,7 +89,7 @@
                     <div id="loader" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                     <div class="top-filter">
                         <div class="view-as">
-                            <span>View as</span>
+                            <span>Voir comme</span>
                             <div id="product-grid" class="icon-filter">
                                 <i class="fas fa-border-none"></i>
                             </div>
@@ -98,7 +98,7 @@
                             </div>
                         </div>
                         <div class="sort-by">
-                            <span>Sort by</span>
+                            <span>Trier par</span>
                             <select class="selectpicker">
                                 <option> Prix Croissante </option>
                                 <option> Prix Decroissante </option>
@@ -136,7 +136,7 @@
                                     <div class="add-hover">
                                         <div class="add-to-card" onclick="addtolocalstorage({{ $product->id }},'{{ $product->imageProduct[0]->img_src }}')">
                                             <img style="width:25px;" src="{{ asset('assets/images/icons/shopping-cart-white.svg') }}" />
-                                            <span>Add To Cart</span>
+                                            <span>Ajouter au panier</span>
                                         </div>
                                         <div class="heart-hover">
                                             <i class="far fa-heart"></i>
@@ -183,6 +183,17 @@
                     },
                     error : function(error) {
                         console.log(error)
+                    },
+                    complete : function() {
+                        new Noty({
+                            theme:'mint success',
+                            text: 'Votre article a été ajouté à votre panier',
+                            timeout : 2000,
+                            animation: {
+                                open: 'noty_effects_open', // Animate.css class names
+                                close: 'noty_effects_close' // Animate.css class names
+                            }
+                        }).show();
                     }
                 })
             })

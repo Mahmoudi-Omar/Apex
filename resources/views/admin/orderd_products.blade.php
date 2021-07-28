@@ -6,6 +6,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  
   <title>
     Material Dashboard by Creative Tim
   </title>
@@ -20,92 +21,98 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href={{ asset('assets/admin/demo/demo.css') }} rel="stylesheet" />
   <link href="{{ asset('assets/admin/css/custom.css') }}" rel="stylesheet">
-
-  @livewireStyles
-  @livewireScripts
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
 </head>
 
 <body class="">
   <div class="wrapper ">
     @include('admin.includes.sidebar')
     <div class="main-panel">
-      @include('admin.includes.navbar')
-      {{-- @livewire('insert') --}}
-
       <div class="content">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-warning card-header-icon">
-                  <h4 style="color: #5ea606;
-                  text-align: center;
-                  margin-top: 12px;font-weight: 600;">Orders</h4>
-                  <h3 class="card-title" style="text-align: center">
-                    {{ $order_count }}
-                  </h3>
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">Simple Table</h4>
+                  <p class="card-category"> Here is a subtitle for this table</p>
                 </div>
-                <div class="card-footer">
-          
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-warning card-header-icon">
-                  <h4 style="color: #5ea606;
-                  text-align: center;
-                  margin-top: 12px;font-weight: 600;">En attente</h4>
-                  <h3 class="card-title" style="text-align: center">
-                    {{ $en_attente }}
-                  </h3>
-                </div>
-                <div class="card-footer">
-          
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-primary">
+                        <th>
+                          ID
+                        </th>
+                        <th>
+                          Product Name
+                        </th>
+                        <th>
+                            Price
+                        </th>
+                        <th>
+                          Status
+                        </th>
+                      </thead>
+                      <tbody>
+                        @foreach ($orderd_products as $orderd_product)
+                          <tr>
+
+                            <td>
+                                {{ $orderd_product->id }} 
+                            </td>
+
+                            <td>
+                              {{ $orderd_product->product_name }}
+                            </td>
+                          
+                            <td>
+                              {{ $orderd_product->price }}
+                            </td>
+                           
+                            <td>
+                              {{ $orderd_product->status }}
+                            </td>
+
+                          </tr>
+                        @endforeach
+                        {{-- <tr>
+                          <td>
+                            1
+                          </td>
+                          <td>
+                            Dakota Rice
+                          </td>
+                          <td>
+                            Niger
+                          </td>
+                          <td>
+                            Oud-Turnhout
+                          </td>
+                          <td class="text-primary">
+                            $36,738
+                          </td>
+                        </tr> --}}
+                      </tbody>
+                    </table>
+                    @if (DB::table('orders')->where('id',$order_id)->where('status','pending')->count() > 0 )
+                    <form action="{{ route('admin.porducts_order_confirmed',$order_id) }}" method="post">
+                      @csrf
+                      <button style="float: right" class="btn btn-primary" type="submit">Confirmed</button>
+                    </form>
+                    @endif
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-      
         </div>
       </div>
-      <footer class="footer">
-        <div class="container-fluid">
-          <nav class="float-left">
-            <ul>
-              <li>
-                <a href="https://www.creative-tim.com">
-                  Creative Tim
-                </a>
-              </li>
-              <li>
-                <a href="https://creative-tim.com/presentation">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="http://blog.creative-tim.com">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="https://www.creative-tim.com/license">
-                  Licenses
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="copyright float-right">
-            &copy;
-            <script>
-              document.write(new Date().getFullYear())
-            </script>, made with <i class="material-icons">favorite</i> by
-            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
-          </div>
-        </div>
-      </footer>
     </div>
   </div>
+  <!--   Core JS Files   -->
+
   <!--   Core JS Files   -->
   <script src={{ asset('assets/admin/js/core/jquery.min.js') }}></script>
   <script src={{ asset('assets/admin/js/core/popper.min.js') }}></script>
@@ -149,6 +156,9 @@
   <script src={{ asset("assets/admin/js/material-dashboard.js?v=2.1.2")}} type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src={{ asset('assets/admin/demo/demo.js') }}></script>
+  
+
+
   <script>
     $(document).ready(function() {
       $().ready(function() {
@@ -318,13 +328,6 @@
 
         });
       });
-    });
-  </script>
-  <script>
-    $(document).ready(function() {
-      // Javascript method's body can be found in assets/js/demos.js
-      md.initDashboardPageCharts();
-
     });
   </script>
 </body>

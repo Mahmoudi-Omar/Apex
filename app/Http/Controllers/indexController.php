@@ -17,11 +17,12 @@ class indexController extends Controller
         $new_products = Product::orderBy('id','desc')->take(5)->get();
         $side_categories = Category::take(9)->get();
         $popular_categories = Category::take(10)->get();
+        $offer_products = Product::where('is_offer','=','Offer')->get();
         
 
         return view('index',compact([
             'categories','feature_products','new_products','categories_filter_new_product'
-            ,'feature_categories_filter','side_categories','popular_categories']));
+            ,'feature_categories_filter','side_categories','popular_categories','offer_products']));
     
     }
 
@@ -63,7 +64,7 @@ class indexController extends Controller
                     <div class="add-hover">
                         <div class="add-to-card">
                             <img style="width:25px;" src="'.asset("assets/images/icons/shopping-cart-white.svg").'" />
-                            <span>Add To Cart</span>
+                            <span>Ajouter au panier</span>
                         </div>
                         <div class="heart-hover">
                             <i class="far fa-heart"></i>
@@ -112,7 +113,7 @@ class indexController extends Controller
                         <div class="add-hover">
                             <div class="add-to-card">
                                 <img style="width:25px;" src="'.asset("assets/images/icons/shopping-cart-white.svg").'" />
-                                <span>Add To Cart</span>
+                                <span>Ajouter au panier</span>
                             </div>
                             <div class="heart-hover">
                                 <i class="far fa-heart"></i>

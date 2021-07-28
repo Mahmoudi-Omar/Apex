@@ -76,7 +76,7 @@ class ShopController extends Controller
                         <div class="add-to">
                             <div class="add-to-card">
                                 <img style="width:25px;" src="'.asset('assets/images/icons/shopping-cart-white.svg').'" />
-                                <span>Add To Cart</span>
+                                <span>Ajouter au panier</span>
                             </div>
                             <div class="heart-hover">
                                 <i class="far fa-heart"></i>
@@ -121,7 +121,7 @@ class ShopController extends Controller
                     <div class="add-hover">
                         <div class="add-to-card">
                             <img style="width:25px;" src="'.asset('assets/images/icons/shopping-cart-white.svg').'" />
-                            <span>Add To Cart</span>
+                            <span>Ajouter au panier</span>
                         </div>
                         <div class="heart-hover">
                             <i class="far fa-heart"></i>
@@ -170,7 +170,7 @@ class ShopController extends Controller
                         <div class="add-hover">
                             <div class="add-to-card">
                                 <img style="width:25px;" src="'.asset('assets/images/icons/shopping-cart-white.svg').'" />
-                                <span>Add To Cart</span>
+                                <span>Ajouter au panier</span>
                             </div>
                             <div class="heart-hover">
                                 <i class="far fa-heart"></i>

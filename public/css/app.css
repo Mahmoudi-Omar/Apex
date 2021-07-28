@@ -13398,7 +13398,7 @@ p {
   background-color: #5ea606;
   color: #fff;
   padding: 7px 3px;
-  width: 100%;
+  width: 170px;
   border-radius: 3px;
   display: flex;
   align-items: center;
@@ -13417,7 +13417,7 @@ p {
 }
 
 .new-products .card-wrapper .product-card .add-hover span {
-  font-size: 15px;
+  font-size: 13px !important;
   font-weight: 400;
 }
 
@@ -13576,11 +13576,24 @@ p {
   font-family: "roboto", sans-serif;
 }
 
-.deal-card-wrapper .deal-card .price span {
+.deal-card-wrapper .deal-card .tittle a:hover {
+  color: #5ea606;
+}
+
+.deal-card-wrapper .deal-card .price .offer_price {
   font-size: 20px;
   color: #5ea606 !important;
   font-weight: bold;
   font-family: "roboto", sans-serif;
+}
+
+.deal-card-wrapper .deal-card .price .old_price {
+  margin-left: 15px;
+  font-size: 20px;
+  color: #999;
+  font-weight: 400;
+  text-decoration: line-through;
+  font-family: "roboto";
 }
 
 .deal-card-wrapper .deal-card .avis {
@@ -13604,11 +13617,12 @@ p {
   align-items: center;
   position: absolute;
   transition: all 0.3s;
+  width: 170px;
 }
 
 .deal-card-wrapper .deal-card .add-hover .add-to-card {
   padding: 7px 3px;
-  width: 100%;
+  width: 170px;
   border-radius: 3px;
   display: flex;
   align-items: center;
@@ -13622,7 +13636,7 @@ p {
 }
 
 .deal-card-wrapper .deal-card .add-hover .add-to-card span {
-  font-size: 15px;
+  font-size: 13px !important;
   font-weight: 400;
   color: #222;
 }
@@ -13871,7 +13885,7 @@ p {
   background-color: #5ea606;
   color: #fff;
   padding: 7px 3px;
-  width: 100%;
+  width: 170px;
   border-radius: 3px;
   display: flex;
   align-items: center;
@@ -13884,7 +13898,7 @@ p {
 }
 
 .feature-product .card-wrapper .product-card .add-hover span {
-  font-size: 15px;
+  font-size: 13px !important;
   font-weight: 400;
 }
 
@@ -14063,6 +14077,38 @@ p {
   z-index: 1;
 }
 
+.noty_effects_open {
+  opacity: 0;
+  transform: translate(50%);
+  -webkit-animation: noty_anim_in 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+          animation: noty_anim_in 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.noty_effects_close {
+  -webkit-animation: noty_anim_out 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+          animation: noty_anim_out 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes noty_anim_in {
+  100% {
+    transform: translate(0);
+    opacity: 1;
+  }
+}
+
+@keyframes noty_anim_out {
+  100% {
+    transform: translate(50%);
+    opacity: 0;
+  }
+}
+
+.noty_theme__mint.noty_type__alert,
+.noty_theme__mint.noty_type__notification {
+  background: #5ea606;
+  color: #fff;
+}
+
 .top-bar {
   display: flex;
   align-items: center;
@@ -14080,9 +14126,9 @@ p {
 }
 
 .top-bar .logo img {
-  width: 70px;
+  width: 80px;
   margin: 0 5px;
-  height: 60px;
+  height: 70px;
 }
 
 .top-bar .logo .slogan {
@@ -14092,6 +14138,12 @@ p {
 .top-bar .logo .slogan h4 {
   font-weight: bolder;
   margin: 0;
+  font-size: 25px;
+}
+
+.top-bar .logo .slogan P {
+  font-size: 14px;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
@@ -14950,7 +15002,7 @@ a:hover {
 }
 
 .slider-shop .latest-product-slider .product-card .add-hover span {
-  font-size: 15px;
+  font-size: 13px !important;
   font-weight: 400;
 }
 
@@ -15166,7 +15218,7 @@ a:hover {
 }
 
 .shop-content .product-card .add-hover span {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 400;
 }
 
@@ -15445,7 +15497,7 @@ a:hover {
   background-color: #5ea606;
   color: #fff;
   padding: 7px 3px;
-  width: 35%;
+  width: 42%;
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -15643,6 +15695,73 @@ a:hover {
   background-color: #dedede;
   height: 1px;
   margin: 0px auto 60px;
+}
+
+/*  
+ *  Pure CSS star rating that works without reversing order
+ *  of inputs
+ *  -------------------------------------------------------
+ *  NOTE: For the styling to work, there needs to be a radio
+ *        input selected by default. There also needs to be a
+ *        radio input before the first star, regardless of
+ *        whether you offer a 'no rating' or 0 stars option
+ *  
+ *  This codepen uses FontAwesome icons
+ */
+
+#full-stars-example-two {
+  /* use display:inline-flex to prevent whitespace issues. alternatively, you can put all the children of .rating-group on a single line */
+  /* make hover effect work properly in IE */
+  /* hide radio inputs */
+  /* hide 'none' input from screenreaders */
+  /* set icon padding and size */
+  /* set default star color */
+  /* if any input is checked, make its following siblings grey */
+  /* make all stars orange on rating group hover */
+  /* make hovered input's following siblings grey on hover */
+}
+
+#full-stars-example-two .rating-group {
+  display: inline-flex;
+  margin: 10px 0;
+}
+
+#full-stars-example-two .rating__icon {
+  pointer-events: none;
+}
+
+#full-stars-example-two .rating__input {
+  position: absolute !important;
+  left: -9999px !important;
+}
+
+#full-stars-example-two .rating__input--none {
+  display: none;
+}
+
+#full-stars-example-two .rating__label {
+  cursor: pointer;
+  padding: 0 0.1em;
+}
+
+#full-stars-example-two .rating__icon--star {
+  color: orange;
+}
+
+#full-stars-example-two .rating__input:checked ~ .rating__label .rating__icon--star {
+  color: #ddd;
+}
+
+#full-stars-example-two .rating-group:hover .rating__label .rating__icon--star {
+  color: orange;
+}
+
+#full-stars-example-two .rating__input:hover ~ .rating__label .rating__icon--star {
+  color: #ddd;
+}
+
+.is_rated {
+  color: orange !important;
 }
 
 .shopping-box {

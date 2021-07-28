@@ -155,9 +155,11 @@
                             </div>
                             <div class="col-md-6">
                               <div class="form-group">
+                                  {{-- <label for="product_offers" class="bmd-label-floating">Is Offer</label>
+                                  <input id="product_offers" type="radio" name="product_offers" class="form-control" /> --}}
                                   <select name="product_offers" class="selectpicker">
-                                      <option value="Offer">Offer</option> 
-                                      <option value="Not_Offer">Not_Offer</option> 
+                                    <option value="Not_Offer">Not_Offer</option> 
+                                    <option value="Offer">Offer</option> 
                                   </select>
                               </div>
                             </div>

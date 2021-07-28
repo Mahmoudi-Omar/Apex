@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('status');
             $table->string('price');
             $table->string('old_price')->nullable();
+            $table->string('is_offer')->nullable();
             $table->unsignedBigInteger('cat_id');
             $table->unsignedBigInteger('sub_cat_id')->nullable();
             $table->foreign('cat_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');

@@ -3,7 +3,7 @@
         <div class="categoires">
             <div class="cat-title">
                 <i class="fas fa-bars"></i>
-                <span class="title">ALL CATEGORIES</span>
+                <span class="title">CATÉGORIES</span>
             </div>
             <div class="cat-list">
                 <ul>
@@ -24,10 +24,10 @@
     <div class="col-md-9 col-xs-12">
         <div class="custom-navbar">
             <span class="fas fa-home"></span>
-            <h4> <a style="color:#5ea606" href="{{ route('index') }}"> HOME </a> </h4>
-            <h4><a href="{{ route('shop') }}"> SHOP </a></h4>
-            <h4> <a href="{{ route('about-us') }}"> ABOUT US </a></h4>
-            <h4>CONTACT US</h4>
+            <h4> <a style="color:#5ea606" href="{{ route('index') }}"> ACCEUIL </a> </h4>
+            <h4><a href="{{ route('shop') }}"> PRODUITS </a></h4>
+            <h4> <a href="{{ route('about-us') }}"> QUI SOMMES NOUS </a></h4>
+            <h4>CONTACT</h4>
         </div>
         <div class="slider-content">
             <div class="row">
